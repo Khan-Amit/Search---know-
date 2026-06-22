@@ -1,231 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Search---know-™</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#f0f2f5;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px}
-    .container{max-width:960px;width:100%;background:#fff;border-radius:24px;padding:30px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
-    .brand{text-align:center;margin-bottom:20px}
-    .brand .logo{font-size:3.5rem;display:block}
-    .brand h1{font-size:2rem;font-weight:300;letter-spacing:2px;color:#1a1a1a}
-    .brand h1 small{font-size:1rem;font-weight:400;color:#666}
-    .brand .byline{font-size:0.8rem;color:#888;margin-top:4px}
-    .brand .byline a{color:#1a1a1a;text-decoration:none;border-bottom:1px dotted #ccc}
-    .brand .mardukh{font-size:0.65rem;color:#aaa;margin-top:2px;letter-spacing:1px}
-    .search-area{max-width:580px;margin:16px auto 24px;background:#fff;border-radius:60px;padding:6px 6px 6px 24px;display:flex;align-items:center;border:2px solid #e0e0e0;transition:all .2s}
-    .search-area:focus-within{border-color:#1a1a1a;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-    .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:12px 0;font-size:1.1rem;color:#1a1a1a;outline:none}
-    .search-area input::placeholder{color:#999}
-    .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:10px 28px;font-weight:600;font-size:.95rem;color:#fff;cursor:pointer;transition:all .2s}
-    .search-area button:hover{background:#333;transform:scale(1.02)}
-    .app-section{margin:20px 0 12px}
-    .app-section .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-    .app-section .section-header h2{font-size:1rem;font-weight:400;color:#666;letter-spacing:1px}
-    .app-section .section-header .add-btn{background:#f0f0f0;border:1px solid #ddd;border-radius:40px;padding:6px 16px;font-size:.75rem;color:#333;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
-    .app-section .section-header .add-btn:hover{background:#e0e0e0;border-color:#aaa}
-    .app-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
-    .app-item{background:#f7f8fa;border:1px solid #e8e8e8;border-radius:16px;padding:14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px;min-height:90px;cursor:pointer;transition:all .2s;text-decoration:none;color:#1a1a1a;position:relative}
-    .app-item:hover{background:#f0f0f0;border-color:#ccc;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
-    .app-item .app-icon{font-size:2rem;margin-bottom:6px;display:block}
-    .app-item .app-label{font-size:.7rem;font-weight:500;text-align:center;color:#444;max-width:80px;word-break:break-word}
-    .app-item .app-delete{position:absolute;top:-6px;right:-6px;background:#ff4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.6rem;cursor:pointer;display:none;align-items:center;justify-content:center}
-    .app-item:hover .app-delete{display:flex}
-    .app-item .app-badge{position:absolute;top:-6px;right:-6px;background:#1a1a1a;color:#fff;border-radius:12px;padding:1px 8px;font-size:.5rem;font-weight:600;text-transform:uppercase}
-    .app-item.add-new{background:transparent;border:2px dashed #ccc;min-height:80px;min-width:80px;justify-content:center;color:#999}
-    .app-item.add-new:hover{background:#f7f8fa;border-color:#aaa;color:#666}
-    .visitor-counter{background:#f7f8fa;border-radius:16px;padding:12px 20px;margin:20px 0 12px;border:1px solid #eee;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
-    .visitor-counter .stat{display:flex;align-items:center;gap:6px;color:#666;font-size:.8rem}
-    .visitor-counter .stat strong{color:#1a1a1a;font-size:1rem}
-    .visitor-counter .online-dot{display:inline-block;width:8px;height:8px;background:#27ae60;border-radius:50%;animation:pulse 1.5s infinite}
-    @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
-    .visitor-counter .refresh-btn{background:transparent;border:1px solid #ddd;color:#888;padding:4px 14px;border-radius:20px;font-size:.65rem;cursor:pointer}
-    #results{margin-top:12px}
-    .result-card{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #eee}
-    .result-card h3{font-size:1rem;font-weight:600;color:#1a1a1a}
-    .result-card .url{font-size:.75rem;color:#888;margin:2px 0}
-    .result-card .snippet{font-size:.9rem;color:#444;line-height:1.4}
-    .result-card .badge{display:inline-block;background:#e0e0e0;padding:2px 10px;border-radius:12px;font-size:.65rem;color:#555;margin-top:4px}
-    .info-message{text-align:center;color:#999;padding:30px 0;font-style:italic}
-    .loader{text-align:center;color:#999;padding:20px 0;display:none}
-    .loader .spinner{display:inline-block;width:24px;height:24px;border:3px solid #e0e0e0;border-top:3px solid #1a1a1a;border-radius:50%;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .visitor-log{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-top:12px;border:1px solid #eee;max-height:180px;overflow-y:auto}
-    .visitor-log h3{font-size:.8rem;font-weight:400;color:#888;margin-bottom:8px}
-    .visitor-log table{width:100%;font-size:.7rem;border-collapse:collapse}
-    .visitor-log th{text-align:left;color:#999;font-weight:500;padding-bottom:4px;border-bottom:1px solid #eee}
-    .visitor-log td{padding:3px 0;color:#555;border-bottom:1px solid #f0f0f0}
-    .visitor-log .flag{font-size:.9rem}
-    .visitor-log .ip{color:#aaa;font-size:.6rem}
-    .visitor-log .timestamp{color:#bbb;font-size:.6rem}
-    .visitor-log::-webkit-scrollbar{width:3px}
-    .visitor-log::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
-    .footer{margin-top:24px;text-align:center;font-size:.7rem;color:#aaa;border-top:1px solid #eee;padding-top:16px}
-    .footer a{color:#888;text-decoration:none}
-    .footer a:hover{color:#1a1a1a}
-    .footer .open-source{font-size:.6rem;color:#bbb;margin-top:2px}
-    .admin-toggle{position:fixed;bottom:16px;right:16px;background:#fff;border:1px solid #ddd;border-radius:40px;padding:6px 14px;color:#888;font-size:.65rem;cursor:pointer;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-    .admin-toggle:hover{background:#f0f0f0;color:#333}
-    .admin-panel{display:none;background:#f7f8fa;border-radius:16px;padding:16px 20px;margin-top:16px;border:1px solid #eee}
-    .admin-panel.visible{display:block}
-    .admin-panel h3{font-size:.9rem;font-weight:400;color:#444;margin-bottom:10px}
-    .admin-panel label{color:#888;font-size:.75rem;display:block;margin:6px 0 3px}
-    .admin-panel input,.admin-panel textarea{width:100%;background:#fff;border:1px solid #ddd;border-radius:8px;padding:6px 12px;color:#1a1a1a;font-size:.85rem}
-    .admin-panel button{background:#1a1a1a;color:#fff;border:none;border-radius:40px;padding:6px 18px;font-size:.75rem;cursor:pointer;margin-top:8px}
-    .admin-panel button:hover{background:#333}
-    .admin-panel .admin-status{color:#27ae60;font-size:.75rem;margin-top:6px}
-    @media(max-width:480px){.search-area{padding:4px 4px 4px 16px;border-radius:40px}.search-area input[type="text"]{font-size:.95rem;padding:10px 0}.search-area button{padding:8px 16px;font-size:.8rem}.app-item{min-width:70px;min-height:70px;padding:10px 12px}.app-item .app-icon{font-size:1.5rem}.app-item .app-label{font-size:.6rem}.brand h1{font-size:1.5rem}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Search---know-™</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#f0f2f5;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px}
+        .container{max-width:960px;width:100%;background:#fff;border-radius:24px;padding:30px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+        
+        .brand{text-align:center;margin-bottom:20px}
+        .brand .logo{font-size:3.5rem;display:block}
+        .brand h1{font-size:2rem;font-weight:300;letter-spacing:2px;color:#1a1a1a}
+        .brand h1 small{font-size:1rem;font-weight:400;color:#666}
+        .brand .byline{font-size:0.8rem;color:#888;margin-top:4px}
+        .brand .byline a{color:#1a1a1a;text-decoration:none;border-bottom:1px dotted #ccc}
+        .brand .mardukh{font-size:0.65rem;color:#aaa;margin-top:2px;letter-spacing:1px}
+        
+        .search-area{max-width:580px;margin:16px auto 24px;background:#fff;border-radius:60px;padding:6px 6px 6px 24px;display:flex;align-items:center;border:2px solid #e0e0e0;transition:all .2s}
+        .search-area:focus-within{border-color:#1a1a1a;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+        .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:12px 0;font-size:1.1rem;color:#1a1a1a;outline:none}
+        .search-area input::placeholder{color:#999}
+        .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:10px 28px;font-weight:600;font-size:.95rem;color:#fff;cursor:pointer;transition:all .2s}
+        .search-area button:hover{background:#333;transform:scale(1.02)}
+        
+        .app-section{margin:20px 0 12px}
+        .app-section .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+        .app-section .section-header h2{font-size:1rem;font-weight:400;color:#666;letter-spacing:1px}
+        .app-section .section-header .add-btn{background:#1a1a1a;border:none;border-radius:40px;padding:8px 20px;font-size:.75rem;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+        .app-section .section-header .add-btn:hover{background:#333;transform:scale(1.02)}
+        .app-section .section-header .admin-btn{background:#f0f0f0;border:1px solid #ddd;border-radius:40px;padding:6px 16px;font-size:.7rem;color:#666;cursor:pointer;transition:all .2s}
+        .app-section .section-header .admin-btn:hover{background:#e0e0e0}
+        
+        .app-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start;min-height:80px}
+        .app-item{background:#f7f8fa;border:1px solid #e8e8e8;border-radius:16px;padding:14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px;min-height:90px;cursor:pointer;transition:all .2s;text-decoration:none;color:#1a1a1a;position:relative}
+        .app-item:hover{background:#f0f0f0;border-color:#ccc;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+        .app-item .app-icon{font-size:2rem;margin-bottom:6px;display:block}
+        .app-item .app-label{font-size:.7rem;font-weight:500;text-align:center;color:#444;max-width:80px;word-break:break-word}
+        .app-item .app-delete{position:absolute;top:-6px;right:-6px;background:#ff4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.6rem;cursor:pointer;display:none;align-items:center;justify-content:center}
+        .app-item:hover .app-delete{display:flex}
+        .app-item .app-badge{position:absolute;top:-6px;right:-6px;background:#1a1a1a;color:#fff;border-radius:12px;padding:1px 8px;font-size:.5rem;font-weight:600;text-transform:uppercase}
+        .app-item.add-new{background:transparent;border:2px dashed #ccc;min-height:80px;min-width:80px;justify-content:center;color:#999;cursor:pointer}
+        .app-item.add-new:hover{background:#f7f8fa;border-color:#aaa;color:#666}
+        
+        .visitor-counter{background:#f7f8fa;border-radius:16px;padding:12px 20px;margin:20px 0 12px;border:1px solid #eee;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
+        .visitor-counter .stat{display:flex;align-items:center;gap:6px;color:#666;font-size:.8rem}
+        .visitor-counter .stat strong{color:#1a1a1a;font-size:1rem}
+        .visitor-counter .online-dot{display:inline-block;width:8px;height:8px;background:#27ae60;border-radius:50%;animation:pulse 1.5s infinite}
+        @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+        .visitor-counter .refresh-btn{background:transparent;border:1px solid #ddd;color:#888;padding:4px 14px;border-radius:20px;font-size:.65rem;cursor:pointer}
+        
+        #results{margin-top:12px}
+        .result-card{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #eee}
+        .result-card h3{font-size:1rem;font-weight:600;color:#1a1a1a}
+        .result-card .url{font-size:.75rem;color:#888;margin:2px 0}
+        .result-card .snippet{font-size:.9rem;color:#444;line-height:1.4}
+        .result-card .badge{display:inline-block;background:#e0e0e0;padding:2px 10px;border-radius:12px;font-size:.65rem;color:#555;margin-top:4px}
+        .info-message{text-align:center;color:#999;padding:30px 0;font-style:italic}
+        .loader{text-align:center;color:#999;padding:20px 0;display:none}
+        .loader .spinner{display:inline-block;width:24px;height:24px;border:3px solid #e0e0e0;border-top:3px solid #1a1a1a;border-radius:50%;animation:spin .8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        
+        .visitor-log{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-top:12px;border:1px solid #eee;max-height:180px;overflow-y:auto}
+        .visitor-log h3{font-size:.8rem;font-weight:400;color:#888;margin-bottom:8px}
+        .visitor-log table{width:100%;font-size:.7rem;border-collapse:collapse}
+        .visitor-log th{text-align:left;color:#999;font-weight:500;padding-bottom:4px;border-bottom:1px solid #eee}
+        .visitor-log td{padding:3px 0;color:#555;border-bottom:1px solid #f0f0f0}
+        .visitor-log .flag{font-size:.9rem}
+        .visitor-log .ip{color:#aaa;font-size:.6rem}
+        .visitor-log .timestamp{color:#bbb;font-size:.6rem}
+        .visitor-log::-webkit-scrollbar{width:3px}
+        .visitor-log::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+        
+        .footer{margin-top:24px;text-align:center;font-size:.7rem;color:#aaa;border-top:1px solid #eee;padding-top:16px}
+        .footer a{color:#888;text-decoration:none}
+        .footer a:hover{color:#1a1a1a}
+        .footer .open-source{font-size:.6rem;color:#bbb;margin-top:2px}
+        
+        /* Admin Panel */
+        .admin-panel{display:none;background:#f7f8fa;border-radius:16px;padding:20px;margin-top:16px;border:1px solid #eee}
+        .admin-panel.visible{display:block}
+        .admin-panel h3{font-size:.9rem;font-weight:400;color:#444;margin-bottom:10px}
+        .admin-panel .admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+        .admin-panel .admin-app-item{background:#fff;border:1px solid #ddd;border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+        .admin-panel .admin-app-item .info{display:flex;align-items:center;gap:10px}
+        .admin-panel .admin-app-item .info .icon{font-size:1.2rem}
+        .admin-panel .admin-app-item .info .name{font-size:.8rem;font-weight:500;color:#333}
+        .admin-panel .admin-app-item .info .url{font-size:.6rem;color:#999;display:block}
+        .admin-panel .admin-app-item .remove-btn{background:#ff4444;color:#fff;border:none;border-radius:20px;padding:4px 12px;font-size:.6rem;cursor:pointer}
+        .admin-panel .admin-app-item .remove-btn:hover{background:#cc0000}
+        .admin-panel .add-app-form{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;align-items:center}
+        .admin-panel .add-app-form input{background:#fff;border:1px solid #ddd;border-radius:40px;padding:8px 16px;font-size:.8rem;flex:1;min-width:120px;color:#333;outline:none}
+        .admin-panel .add-app-form input:focus{border-color:#1a1a1a}
+        .admin-panel .add-app-form button{background:#1a1a1a;color:#fff;border:none;border-radius:40px;padding:8px 20px;font-size:.75rem;cursor:pointer}
+        .admin-panel .add-app-form button:hover{background:#333}
+        .admin-panel .admin-status{color:#27ae60;font-size:.75rem;margin-top:8px}
+        .admin-toggle{position:fixed;bottom:16px;right:16px;background:#fff;border:1px solid #ddd;border-radius:40px;padding:6px 14px;color:#888;font-size:.65rem;cursor:pointer;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+        .admin-toggle:hover{background:#f0f0f0;color:#333}
+        
+        @media(max-width:480px){.search-area{padding:4px 4px 4px 16px;border-radius:40px}.search-area input[type="text"]{font-size:.95rem;padding:10px 0}.search-area button{padding:8px 16px;font-size:.8rem}.app-item{min-width:70px;min-height:70px;padding:10px 12px}.app-item .app-icon{font-size:1.5rem}.app-item .app-label{font-size:.6rem}.brand h1{font-size:1.5rem}}
+    </style>
 </head>
 <body>
 <div class="container">
-  <div class="brand">
-    <div class="logo">🔍</div>
-    <h1>Search---know- <small>™</small></h1>
-    <div class="byline">A part of <strong>Mardukh system</strong> ® • Created by <a href="mailto:amit.khanna.1082@gmail.com">Seliiim Ahmed</a></div>
-    <div class="mardukh">All rights reserved • Open source</div>
-  </div>
-  <div class="search-area">
-    <input type="text" id="queryInput" placeholder="Search anything..." autofocus>
-    <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
-  </div>
-  <div class="app-section">
-    <div class="section-header">
-      <h2><i class="fas fa-th"></i> My Apps</h2>
-      <button class="add-btn" id="addAppBtn"><i class="fas fa-plus"></i> Add App</button>
+    
+    <!-- BRAND -->
+    <div class="brand">
+        <div class="logo">🔍</div>
+        <h1>Search---know- <small>™</small></h1>
+        <div class="byline">A part of <strong>Mardukh system</strong> ® • Created by <a href="mailto:amit.khanna.1082@gmail.com">Seliiim Ahmed</a></div>
+        <div class="mardukh">All rights reserved • Open source</div>
     </div>
-    <div class="app-grid" id="appGrid"></div>
-  </div>
-  <div class="visitor-counter" id="visitorCounter">
-    <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
-    <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
-    <div class="stat">🌍 <span id="topCountries">Loading...</span></div>
-    <button class="refresh-btn" onclick="refreshStats()">↻</button>
-  </div>
-  <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:6px;font-size:.8rem;">Searching...</p></div>
-  <div id="results"><div class="info-message">🔍 Type something and press Search</div></div>
-  <div class="visitor-log" id="visitorLog">
-    <h3>🕵️ Recent Visitors</h3>
-    <table>
-      <thead><tr><th>#</th><th>Time</th><th>Country</th><th>IP</th></tr></thead>
-      <tbody id="logBody"><tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr></tbody>
-    </table>
-  </div>
-  <div id="adminPanel" class="admin-panel">
-    <h3>🛡️ Admin - Block List</h3>
-    <label>Blocked Countries (comma-separated)</label>
-    <input type="text" id="blockedCountriesInput" placeholder="SG, CN, RU">
-    <label>Blocked IPs (comma-separated)</label>
-    <textarea id="blockedIPsInput" rows="2" placeholder="192.168.1.1, 10.0.0.1"></textarea>
-    <button onclick="saveBlockList()">💾 Save</button>
-    <button onclick="clearBlockList()" style="background:#666;margin-left:8px;">🗑️ Clear</button>
-    <div class="admin-status" id="adminStatus"></div>
-  </div>
-  <div class="footer">
-    <span>© 2026 Search---know-™ • Mardukh system ®</span>
-    <br>
-    <span class="open-source">Open source • <a href="#" onclick="alert('Improve on GitHub!')">Improve this page</a></span>
-  </div>
-  <button class="admin-toggle" onclick="toggleAdmin()">⚙️</button>
+    
+    <!-- SEARCH -->
+    <div class="search-area">
+        <input type="text" id="queryInput" placeholder="Search anything..." autofocus>
+        <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+    
+    <!-- APPS -->
+    <div class="app-section">
+        <div class="section-header">
+            <h2><i class="fas fa-th"></i> My Apps</h2>
+            <div>
+                <button class="admin-btn" id="adminToggleBtn"><i class="fas fa-cog"></i> Manage Apps</button>
+                <button class="add-btn" id="addAppBtn"><i class="fas fa-plus"></i> Add App</button>
+            </div>
+        </div>
+        <div class="app-grid" id="appGrid">
+            <div class="info-message" style="padding:10px 0;">Loading apps...</div>
+        </div>
+    </div>
+    
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" class="admin-panel">
+        <h3>🛡️ Manage Apps</h3>
+        <div class="add-app-form">
+            <input type="text" id="adminAppName" placeholder="App name (e.g., Yahoo Weather)">
+            <input type="text" id="adminAppUrl" placeholder="App URL (e.g., https://weather.com)">
+            <input type="text" id="adminAppIcon" placeholder="Icon (e.g., fa-cloud-sun)" value="fa-link">
+            <button id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div id="adminAppList"></div>
+        <div class="admin-status" id="adminStatus"></div>
+    </div>
+    
+    <!-- VISITOR COUNTER -->
+    <div class="visitor-counter" id="visitorCounter">
+        <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
+        <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
+        <div class="stat">🌍 <span id="topCountries">Loading...</span></div>
+        <button class="refresh-btn" onclick="refreshStats()">↻</button>
+    </div>
+    
+    <!-- RESULTS -->
+    <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:6px;font-size:.8rem;">Searching...</p></div>
+    <div id="results"><div class="info-message">🔍 Type something and press Search</div></div>
+    
+    <!-- VISITOR LOG -->
+    <div class="visitor-log" id="visitorLog">
+        <h3>🕵️ Recent Visitors</h3>
+        <table>
+            <thead><tr><th>#</th><th>Time</th><th>Country</th><th>IP</th></tr></thead>
+            <tbody id="logBody"><tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr></tbody>
+        </table>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© 2026 Search---know-™ • Mardukh system ®</span>
+        <br>
+        <span class="open-source">Open source • <a href="#" onclick="alert('Improve on GitHub!')">Improve this page</a></span>
+    </div>
+    
+    <button class="admin-toggle" onclick="toggleAdmin()">⚙️</button>
 </div>
+
 <script>
-const DEFAULT_APPS = [
-  { id: 'web', label: 'Web', icon: 'fa-globe' },
-  { id: 'images', label: 'Images', icon: 'fa-image' },
-  { id: 'movies', label: 'Movies', icon: 'fa-film' },
-  { id: 'finance', label: 'Finance', icon: 'fa-chart-pie' },
-  { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor' },
-  { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
-  { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/' },
-  { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1' }
-];
+// ============================================================
+// 1. APP MANAGEMENT (Backend via JSON)
+// ============================================================
 const APPS_KEY = 'searchknow_apps';
+
+// Default apps
+const DEFAULT_APPS = [
+    { id: 'web', label: 'Web', icon: 'fa-globe', url: null },
+    { id: 'images', label: 'Images', icon: 'fa-image', url: null },
+    { id: 'movies', label: 'Movies', icon: 'fa-film', url: null },
+    { id: 'finance', label: 'Finance', icon: 'fa-chart-pie', url: null },
+    { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor', url: null },
+    { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
+    { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/' },
+    { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1' }
+];
+
 function loadApps() {
-  try {
-    const stored = localStorage.getItem(APPS_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-    }
-  } catch (e) {}
-  return JSON.parse(JSON.stringify(DEFAULT_APPS));
+    try {
+        const stored = localStorage.getItem(APPS_KEY);
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+    } catch (e) {}
+    return JSON.parse(JSON.stringify(DEFAULT_APPS));
 }
+
 function saveApps(apps) {
-  localStorage.setItem(APPS_KEY, JSON.stringify(apps));
+    localStorage.setItem(APPS_KEY, JSON.stringify(apps));
 }
+
 let appList = loadApps();
+
+// ============================================================
+// 2. RENDER APPS
+// ============================================================
 const appGrid = document.getElementById('appGrid');
+
 function renderApps() {
-  appGrid.innerHTML = '';
-  appList.forEach(app => {
-    const div = document.createElement('div');
-    div.className = 'app-item';
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'app-delete';
-    deleteBtn.innerHTML = '×';
-    deleteBtn.title = 'Remove';
-    deleteBtn.onclick = (e) => {
-      e.stopPropagation();
-      if (confirm('Remove "' + app.label + '"?')) {
-        appList = appList.filter(a => a.id !== app.id);
+    appGrid.innerHTML = '';
+    
+    if (appList.length === 0) {
+        appGrid.innerHTML = '<div class="info-message" style="padding:10px 0;">No apps added yet. Click "Add App" to add one.</div>';
+        return;
+    }
+    
+    appList.forEach(app => {
+        const div = document.createElement('div');
+        div.className = 'app-item';
+        
+        // Delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'app-delete';
+        deleteBtn.innerHTML = '×';
+        deleteBtn.title = 'Remove';
+        deleteBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (confirm('Remove "' + app.label + '"?')) {
+                appList = appList.filter(a => a.id !== app.id);
+                saveApps(appList);
+                renderApps();
+                renderAdminList();
+            }
+        };
+        div.appendChild(deleteBtn);
+        
+        // Icon
+        const icon = document.createElement('span');
+        icon.className = 'app-icon';
+        icon.innerHTML = `<i class="fas ${app.icon}"></i>`;
+        div.appendChild(icon);
+        
+        // Label
+        const label = document.createElement('span');
+        label.className = 'app-label';
+        label.textContent = app.label;
+        div.appendChild(label);
+        
+        // Badge for external apps
+        if (app.url) {
+            const badge = document.createElement('span');
+            badge.className = 'app-badge';
+            badge.textContent = 'APP';
+            div.appendChild(badge);
+        }
+        
+        // Click handler
+        div.onclick = () => {
+            if (app.url) {
+                window.open(app.url, '_blank');
+            } else {
+                const q = document.getElementById('queryInput').value.trim();
+                if (q) {
+                    document.getElementById('results').innerHTML = `
+                        <div class="result-card">
+                            <h3>🔍 ${app.label} Results</h3>
+                            <div class="snippet">Showing results for "<strong>${q}</strong>" in ${app.label}</div>
+                            <div class="badge">${app.label}</div>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('results').innerHTML = `<div class="info-message">🔍 Type something to search ${app.label}</div>`;
+                }
+            }
+        };
+        
+        appGrid.appendChild(div);
+    });
+}
+
+// ============================================================
+// 3. ADMIN PANEL
+// ============================================================
+const adminPanel = document.getElementById('adminPanel');
+const adminAppList = document.getElementById('adminAppList');
+
+function renderAdminList() {
+    if (appList.length === 0) {
+        adminAppList.innerHTML = '<div style="color:#999;font-size:.8rem;padding:8px 0;">No apps added yet.</div>';
+        return;
+    }
+    
+    adminAppList.innerHTML = '<div class="admin-grid">';
+    appList.forEach(app => {
+        adminAppList.innerHTML += `
+            <div class="admin-app-item">
+                <div class="info">
+                    <span class="icon"><i class="fas ${app.icon}"></i></span>
+                    <div>
+                        <span class="name">${app.label}</span>
+                        <span class="url">${app.url || 'Search mode'}</span>
+                    </div>
+                </div>
+                <button class="remove-btn" onclick="removeApp('${app.id}')">Remove</button>
+            </div>
+        `;
+    });
+    adminAppList.innerHTML += '</div>';
+}
+
+function removeApp(id) {
+    if (confirm('Remove this app?')) {
+        appList = appList.filter(a => a.id !== id);
         saveApps(appList);
         renderApps();
-      }
-    };
-    div.appendChild(deleteBtn);
-    const icon = document.createElement('span');
-    icon.className = 'app-icon';
-    icon.innerHTML = `<i class="fas ${app.icon}"></i>`;
-    div.appendChild(icon);
-    const label = document.createElement('span');
-    label.className = 'app-label';
-    label.textContent = app.label;
-    div.appendChild(label);
-    if (app.url) {
-      const badge = document.createElement('span');
-      badge.className = 'app-badge';
-      badge.textContent = 'APP';
-      div.appendChild(badge);
+        renderAdminList();
+        document.getElementById('adminStatus').textContent = '✅ App removed!';
+        setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
     }
-    div.onclick = () => {
-      if (app.url) {
-        window.open(app.url, '_blank');
-      } else {
-        const q = document.getElementById('queryInput').value.trim();
-        if (q) {
-          document.getElementById('results').innerHTML = `<div class="result-card"><h3>🔍 ${app.label} Results</h3><div class="snippet">Showing results for "${q}" in ${app.label}</div><div class="badge">${app.label}</div></div>`;
-        } else {
-          document.getElementById('results').innerHTML = `<div class="info-message">🔍 Type something to search ${app.label}</div>`;
-        }
-      }
-    };
-    appGrid.appendChild(div);
-  });
-  const addDiv = document.createElement('div');
-  addDiv.className = 'app-item add-new';
-  addDiv.innerHTML = `<span style="font-size:2rem;">+</span><span style="font-size:.6rem;color:#999;margin-top:4px;">Add App</span>`;
-  addDiv.onclick = () => {
-    const label = prompt('Enter app name:');
-    if (!label || label.trim() === '') return;
-    const url = prompt('Enter app URL (e.g., https://weather.com):');
-    if (!url || url.trim() === '') return;
-    const icon = prompt('Enter Font Awesome icon (e.g., fa-cloud-sun):', 'fa-link');
+}
+
+function toggleAdmin() {
+    adminPanel.classList.toggle('visible');
+    if (adminPanel.classList.contains('visible')) {
+        renderAdminList();
+    }
+}
+
+document.getElementById('adminToggleBtn').addEventListener('click', toggleAdmin);
+
+// Admin add app
+document.getElementById('adminAddBtn').addEventListener('click', () => {
+    const name = document.getElementById('adminAppName').value.trim();
+    const url = document.getElementById('adminAppUrl').value.trim();
+    const icon = document.getElementById('adminAppIcon').value.trim() || 'fa-link';
+    
+    if (!name) {
+        document.getElementById('adminStatus').textContent = '⚠️ Please enter an app name.';
+        return;
+    }
+    
     const newApp = {
-      id: 'app_' + Date.now(),
-      label: label.trim(),
-      icon: icon || 'fa-link',
-      url: url.trim()
+        id: 'app_' + Date.now(),
+        label: name,
+        icon: icon,
+        url: url || null
     };
+    
     appList.push(newApp);
     saveApps(appList);
     renderApps();
-    alert('✅ "' + label + '" added!');
-  };
-  appGrid.appendChild(addDiv);
-}
+    renderAdminList();
+    
+    document.getElementById('adminAppName').value = '';
+    document.getElementById('adminAppUrl').value = '';
+    document.getElementById('adminAppIcon').value = 'fa-link';
+    document.getElementById('adminStatus').textContent = '✅ "' + name + '" added!';
+    setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
+});
+
+// Quick add from main page
+document.getElementById('addAppBtn').addEventListener('click', () => {
+    adminPanel.classList.add('visible');
+    renderAdminList();
+    document.getElementById('adminAppName').focus();
+});
+
+// ============================================================
+// 4. VISITOR TRACKING
+// ============================================================
 const LOG_KEY = 'searchknow_visit_log';
 const TOTAL_KEY = 'searchknow_total_visits';
 const COUNTRIES_KEY = 'searchknow_countries';
@@ -233,124 +386,120 @@ const ONLINE_KEY = 'searchknow_online';
 const VISITOR_ID_KEY = 'searchknow_visitor_id';
 const BLOCKED_COUNTRIES_KEY = 'searchknow_blocked_countries';
 const BLOCKED_IPS_KEY = 'searchknow_blocked_ips';
+
 function getBlockedCountries() {
-  const val = localStorage.getItem(BLOCKED_COUNTRIES_KEY);
-  return val ? val.split(',').map(s => s.trim().toUpperCase()).filter(s => s) : [];
+    const val = localStorage.getItem(BLOCKED_COUNTRIES_KEY);
+    return val ? val.split(',').map(s => s.trim().toUpperCase()).filter(s => s) : [];
 }
+
 function getBlockedIPs() {
-  const val = localStorage.getItem(BLOCKED_IPS_KEY);
-  return val ? val.split(',').map(s => s.trim()).filter(s => s) : [];
+    const val = localStorage.getItem(BLOCKED_IPS_KEY);
+    return val ? val.split(',').map(s => s.trim()).filter(s => s) : [];
 }
-window.toggleAdmin = function() {
-  const panel = document.getElementById('adminPanel');
-  panel.classList.toggle('visible');
-  if (panel.classList.contains('visible')) {
-    document.getElementById('blockedCountriesInput').value = getBlockedCountries().join(', ');
-    document.getElementById('blockedIPsInput').value = getBlockedIPs().join(', ');
-  }
-};
-window.saveBlockList = function() {
-  const countries = document.getElementById('blockedCountriesInput').value.split(',').map(s => s.trim().toUpperCase()).filter(s => s);
-  const ips = document.getElementById('blockedIPsInput').value.split(',').map(s => s.trim()).filter(s => s);
-  localStorage.setItem(BLOCKED_COUNTRIES_KEY, countries.join(','));
-  localStorage.setItem(BLOCKED_IPS_KEY, ips.join(','));
-  document.getElementById('adminStatus').textContent = '✅ Saved!';
-  setTimeout(() => document.getElementById('adminStatus').textContent = '', 3000);
-};
-window.clearBlockList = function() {
-  localStorage.removeItem(BLOCKED_COUNTRIES_KEY);
-  localStorage.removeItem(BLOCKED_IPS_KEY);
-  document.getElementById('blockedCountriesInput').value = '';
-  document.getElementById('blockedIPsInput').value = '';
-  document.getElementById('adminStatus').textContent = '🗑️ Cleared!';
-  setTimeout(() => document.getElementById('adminStatus').textContent = '', 3000);
-};
+
 async function fetchVisitorData() {
-  try {
-    const res = await fetch('https://ipapi.co/json/');
-    if (!res.ok) throw new Error('IP API failed');
-    const data = await res.json();
-    return { ip: data.ip || 'unknown', country: data.country_code || 'XX', countryName: data.country_name || 'Unknown' };
-  } catch (e) {
-    return { ip: 'unknown', country: 'XX', countryName: 'Unknown' };
-  }
+    try {
+        const res = await fetch('https://ipapi.co/json/');
+        if (!res.ok) throw new Error('IP API failed');
+        const data = await res.json();
+        return { ip: data.ip || 'unknown', country: data.country_code || 'XX', countryName: data.country_name || 'Unknown' };
+    } catch (e) {
+        return { ip: 'unknown', country: 'XX', countryName: 'Unknown' };
+    }
 }
+
 async function logVisit() {
-  const info = await fetchVisitorData();
-  const ip = info.ip, country = info.country, countryName = info.countryName;
-  const blockedCountries = getBlockedCountries(), blockedIPs = getBlockedIPs();
-  if (blockedCountries.includes(country) || blockedIPs.includes(ip)) return;
-  let visitorId = localStorage.getItem(VISITOR_ID_KEY);
-  if (!visitorId) {
-    visitorId = 'v_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 6);
-    localStorage.setItem(VISITOR_ID_KEY, visitorId);
-  }
-  let log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
-  let total = parseInt(localStorage.getItem(TOTAL_KEY) || '0');
-  const today = new Date().toDateString();
-  const existing = log.find(entry => entry.visitorId === visitorId && new Date(entry.timestamp).toDateString() === today);
-  if (!existing) {
-    log.unshift({ visitorId, timestamp: new Date().toISOString(), ip, country, countryName });
-    if (log.length > 100) log = log.slice(0, 100);
-    localStorage.setItem(LOG_KEY, JSON.stringify(log));
-    total++;
-    localStorage.setItem(TOTAL_KEY, String(total));
-  }
-  let countries = JSON.parse(localStorage.getItem(COUNTRIES_KEY) || '{}');
-  countries[country] = (countries[country] || 0) + 1;
-  localStorage.setItem(COUNTRIES_KEY, JSON.stringify(countries));
-  let online = JSON.parse(localStorage.getItem(ONLINE_KEY) || '{}');
-  const now = Date.now();
-  const sessionId = visitorId + '_' + today;
-  online[sessionId] = now;
-  for (const key in online) { if (now - online[key] > 300000) delete online[key]; }
-  localStorage.setItem(ONLINE_KEY, JSON.stringify(online));
-  updateUI();
+    const info = await fetchVisitorData();
+    const ip = info.ip, country = info.country, countryName = info.countryName;
+    const blockedCountries = getBlockedCountries(), blockedIPs = getBlockedIPs();
+    if (blockedCountries.includes(country) || blockedIPs.includes(ip)) return;
+
+    let visitorId = localStorage.getItem(VISITOR_ID_KEY);
+    if (!visitorId) {
+        visitorId = 'v_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 6);
+        localStorage.setItem(VISITOR_ID_KEY, visitorId);
+    }
+
+    let log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
+    let total = parseInt(localStorage.getItem(TOTAL_KEY) || '0');
+    const today = new Date().toDateString();
+    const existing = log.find(entry => entry.visitorId === visitorId && new Date(entry.timestamp).toDateString() === today);
+    
+    if (!existing) {
+        log.unshift({ visitorId, timestamp: new Date().toISOString(), ip, country, countryName });
+        if (log.length > 100) log = log.slice(0, 100);
+        localStorage.setItem(LOG_KEY, JSON.stringify(log));
+        total++;
+        localStorage.setItem(TOTAL_KEY, String(total));
+    }
+
+    let countries = JSON.parse(localStorage.getItem(COUNTRIES_KEY) || '{}');
+    countries[country] = (countries[country] || 0) + 1;
+    localStorage.setItem(COUNTRIES_KEY, JSON.stringify(countries));
+
+    let online = JSON.parse(localStorage.getItem(ONLINE_KEY) || '{}');
+    const now = Date.now();
+    const sessionId = visitorId + '_' + today;
+    online[sessionId] = now;
+    for (const key in online) { if (now - online[key] > 300000) delete online[key]; }
+    localStorage.setItem(ONLINE_KEY, JSON.stringify(online));
+    updateUI();
 }
+
 function updateUI() {
-  document.getElementById('totalVisitors').textContent = (parseInt(localStorage.getItem(TOTAL_KEY) || '0')).toLocaleString();
-  const online = JSON.parse(localStorage.getItem(ONLINE_KEY) || '{}');
-  document.getElementById('onlineNow').textContent = Object.keys(online).length;
-  const countries = JSON.parse(localStorage.getItem(COUNTRIES_KEY) || '{}');
-  const sorted = Object.entries(countries).sort((a, b) => b[1] - a[1]);
-  const top = sorted.slice(0, 5).map(([code, count]) => {
-    const flag = code === 'XX' ? '🌍' : code.split('').map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
-    return `${flag} ${code} (${count})`;
-  }).join(' ');
-  document.getElementById('topCountries').textContent = top || 'None yet';
-  const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
-  const tbody = document.getElementById('logBody');
-  if (log.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr>';
-  } else {
-    tbody.innerHTML = log.slice(0, 20).map((entry, i) => {
-      const flag = entry.country === 'XX' ? '🌍' : entry.country.split('').map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
-      return `<tr><td>${i+1}</td><td class="timestamp">${new Date(entry.timestamp).toLocaleString()}</td><td><span class="flag">${flag}</span> ${entry.countryName}</td><td class="ip">${entry.ip}</td></tr>`;
-    }).join('');
-  }
+    document.getElementById('totalVisitors').textContent = (parseInt(localStorage.getItem(TOTAL_KEY) || '0')).toLocaleString();
+    const online = JSON.parse(localStorage.getItem(ONLINE_KEY) || '{}');
+    document.getElementById('onlineNow').textContent = Object.keys(online).length;
+    const countries = JSON.parse(localStorage.getItem(COUNTRIES_KEY) || '{}');
+    const sorted = Object.entries(countries).sort((a, b) => b[1] - a[1]);
+    const top = sorted.slice(0, 5).map(([code, count]) => {
+        const flag = code === 'XX' ? '🌍' : code.split('').map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+        return `${flag} ${code} (${count})`;
+    }).join(' ');
+    document.getElementById('topCountries').textContent = top || 'None yet';
+    
+    const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
+    const tbody = document.getElementById('logBody');
+    if (log.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr>';
+    } else {
+        tbody.innerHTML = log.slice(0, 20).map((entry, i) => {
+            const flag = entry.country === 'XX' ? '🌍' : entry.country.split('').map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+            return `<tr><td>${i+1}</td><td class="timestamp">${new Date(entry.timestamp).toLocaleString()}</td><td><span class="flag">${flag}</span> ${entry.countryName}</td><td class="ip">${entry.ip}</td></tr>`;
+        }).join('');
+    }
 }
+
 window.refreshStats = updateUI;
 logVisit();
 setInterval(updateUI, 30000);
+
+// ============================================================
+// 5. SEARCH
+// ============================================================
 document.getElementById('searchBtn').addEventListener('click', () => {
-  const q = document.getElementById('queryInput').value.trim();
-  if (q) {
-    document.getElementById('results').innerHTML = `
-      <div class="result-card"><h3>🔍 Search Results</h3><div class="snippet">Showing results for "<strong>${q}</strong>"</div><div class="badge">Search---know-</div></div>
-      <div class="result-card"><div class="snippet">• Result 1: ${q} - related information</div></div>
-      <div class="result-card"><div class="snippet">• Result 2: ${q} - more details</div></div>
-      <div class="result-card"><div class="snippet">• Result 3: ${q} - additional resources</div></div>
-    `;
-  }
+    const q = document.getElementById('queryInput').value.trim();
+    if (q) {
+        document.getElementById('results').innerHTML = `
+            <div class="result-card"><h3>🔍 Search Results</h3><div class="snippet">Showing results for "<strong>${q}</strong>"</div><div class="badge">Search---know-</div></div>
+            <div class="result-card"><div class="snippet">• Result 1: ${q} - related information</div></div>
+            <div class="result-card"><div class="snippet">• Result 2: ${q} - more details</div></div>
+            <div class="result-card"><div class="snippet">• Result 3: ${q} - additional resources</div></div>
+        `;
+    }
 });
+
 document.getElementById('queryInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') document.getElementById('searchBtn').click();
+    if (e.key === 'Enter') document.getElementById('searchBtn').click();
 });
-document.getElementById('addAppBtn').addEventListener('click', () => {
-  document.querySelector('.app-item.add-new').click();
-});
+
+// ============================================================
+// 6. INIT
+// ============================================================
 renderApps();
 console.log('🔍 Search---know-™ loaded.');
+console.log('📌 Apps:', appList.map(a => a.label).join(', '));
+console.log('💡 Click "Manage Apps" to add/remove apps.');
 </script>
 </body>
 </html>
