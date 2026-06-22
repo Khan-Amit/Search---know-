@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Members • Search---know-™</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .members-hero {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+        .members-hero h2 {
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: #1a1a1a;
+        }
+        .members-hero p {
+            color: #888;
+            font-size: .85rem;
+            margin-top: 4px;
+        }
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .member-card {
+            background: #f7f8fa;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .member-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border-color: #ddd;
+        }
+        .member-card .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .member-card .info .name {
+            font-weight: 600;
+            font-size: .95rem;
+            color: #1a1a1a;
+        }
+        .member-card .info .email {
+            font-size: .75rem;
+            color: #888;
+            margin-top: 2px;
+        }
+        .member-card .info .role {
+            font-size: .65rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-top: 2px;
+        }
+        .member-card .actions {
+            margin-left: auto;
+            display: flex;
+            gap: 6px;
+        }
+        .member-card .actions button {
+            background: transparent;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: .6rem;
+            color: #666;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .member-card .actions button:hover {
+            background: #e0e0e0;
+        }
+        .member-card .actions .email-btn {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+        .member-card .actions .email-btn:hover {
+            background: #333;
+        }
+
+        .email-section {
+            background: #f7f8fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #eee;
+        }
+        .email-section h3 {
+            font-size: .9rem;
+            font-weight: 400;
+            color: #444;
+            margin-bottom: 12px;
+        }
+        .email-section .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .email-section .email-form input,
+        .email-section .email-form textarea {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: .85rem;
+            color: #333;
+            outline: none;
+            font-family: inherit;
+        }
+        .email-section .email-form input:focus,
+        .email-section .email-form textarea:focus {
+            border-color: #1a1a1a;
+        }
+        .email-section .email-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .email-section .email-form button {
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-size: .85rem;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: all .2s;
+        }
+        .email-section .email-form button:hover {
+            background: #333;
+        }
+
+        .add-member-form {
+            background: #f7f8fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            border: 1px solid #eee;
+        }
+        .add-member-form h3 {
+            font-size: .9rem;
+            font-weight: 400;
+            color: #444;
+            margin-bottom: 12px;
+        }
+        .add-member-form .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .add-member-form .form-row input {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: .8rem;
+            flex: 1;
+            min-width: 120px;
+            color: #333;
+            outline: none;
+        }
+        .add-member-form .form-row input:focus {
+            border-color: #1a1a1a;
+        }
+        .add-member-form .form-row button {
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-size: .75rem;
+            cursor: pointer;
+        }
+        .add-member-form .form-row button:hover {
+            background: #333;
+        }
+        .member-status {
+            color: #27ae60;
+            font-size: .75rem;
+            margin-top: 8px;
+        }
+
+        @media(max-width:480px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            .member-card {
+                flex-wrap: wrap;
+            }
+            .member-card .actions {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <div class="brand">
+            <div class="logo">🔍</div>
+            <h1>Search---know- <small>™</small></h1>
+        </div>
+        <div class="header-links">
+            <a href="index.html"><i class="fas fa-search"></i> Search</a>
+            <a href="apps.html"><i class="fas fa-th"></i> Apps</a>
+            <a href="members.html" class="active"><i class="fas fa-users"></i> Members</a>
+        </div>
+    </div>
+
+    <!-- ===== MEMBERS HERO ===== -->
+    <div class="members-hero">
+        <h2>👥 Members & Email</h2>
+        <p>Manage your community and send messages</p>
+    </div>
+
+    <!-- ===== MEMBERS GRID ===== -->
+    <div class="members-grid" id="membersGrid"></div>
+
+    <!-- ===== ADD MEMBER ===== -->
+    <div class="add-member-form">
+        <h3>➕ Add Member</h3>
+        <div class="form-row">
+            <input type="text" id="memberName" placeholder="Full name">
+            <input type="email" id="memberEmail" placeholder="Email address">
+            <input type="text" id="memberRole" placeholder="Role (e.g., Admin, Member)">
+            <button id="addMemberBtn"><i class="fas fa-user-plus"></i> Add</button>
+        </div>
+        <div class="member-status" id="memberStatus"></div>
+    </div>
+
+    <!-- ===== EMAIL SECTION ===== -->
+    <div class="email-section">
+        <h3>📧 Send Email</h3>
+        <div class="email-form">
+            <input type="text" id="emailTo" placeholder="To: (email address)">
+            <input type="text" id="emailSubject" placeholder="Subject">
+            <textarea id="emailBody" placeholder="Write your message here..."></textarea>
+            <button id="sendEmailBtn"><i class="fas fa-paper-plane"></i> Send Email</button>
+        </div>
+        <div class="member-status" id="emailStatus"></div>
+    </div>
+
+    <!-- ===== VISITOR COUNTER ===== -->
+    <div class="visitor-counter" id="visitorCounter">
+        <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
+        <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
+        <div class="stat">🌍 <span id="topCountries">Loading...</span></div>
+        <button class="refresh-btn" onclick="refreshStats()">↻</button>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <span>© 2026 Search---know-™ • Mardukh system ®</span>
+        <br>
+        <span class="open-source">Open source • <a href="#" onclick="alert('Improve on GitHub!')">Improve this page</a></span>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+    // ============================================================
+    // MEMBERS MANAGEMENT
+    // ============================================================
+    const MEMBERS_KEY = 'searchknow_members';
+    
+    const DEFAULT_MEMBERS = [
+        { id: 'm1', name: 'Seliiim Ahmed', email: 'amit.khanna.1082@gmail.com', role: 'Admin' },
+        { id: 'm2', name: 'Liang Wenfeng', email: 'liang.wenfeng@deepseek.com', role: 'Member' },
+        { id: 'm3', name: 'Samiul Islam', email: 'samiul@email.com', role: 'Member' }
+    ];
+
+    function loadMembers() {
+        try {
+            const stored = localStorage.getItem(MEMBERS_KEY);
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            }
+        } catch (e) {}
+        return JSON.parse(JSON.stringify(DEFAULT_MEMBERS));
+    }
+
+    function saveMembers(members) {
+        localStorage.setItem(MEMBERS_KEY, JSON.stringify(members));
+    }
+
+    let memberList = loadMembers();
+
+    // ============================================================
+    // RENDER MEMBERS
+    // ============================================================
+    const membersGrid = document.getElementById('membersGrid');
+
+    function renderMembers() {
+        if (!memberList || memberList.length === 0) {
+            membersGrid.innerHTML = '<div class="info-message" style="padding:20px 0;">No members added yet.</div>';
+            return;
+        }
+
+        membersGrid.innerHTML = memberList.map(member => {
+            const initials = member.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            const avatarColor = ['#1a1a1a', '#2d6a4f', '#1b4332', '#0b525b', '#5c2d91', '#b9770e'][memberList.indexOf(member) % 6];
+            
+            return `
+                <div class="member-card">
+                    <div class="avatar" style="background:${avatarColor};">${initials}</div>
+                    <div class="info">
+                        <div class="name">${member.name}</div>
+                        <div class="email">${member.email}</div>
+                        <div class="role">${member.role || 'Member'}</div>
+                    </div>
+                    <div class="actions">
+                        <button class="email-btn" onclick="composeEmail('${member.email}', '${member.name}')"><i class="fas fa-envelope"></i></button>
+                        <button onclick="removeMember('${member.id}')"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ============================================================
+    // ADD MEMBER
+    // ============================================================
+    document.getElementById('addMemberBtn').addEventListener('click', () => {
+        const name = document.getElementById('memberName').value.trim();
+        const email = document.getElementById('memberEmail').value.trim();
+        const role = document.getElementById('memberRole').value.trim() || 'Member';
+        
+        if (!name || !email) {
+            document.getElementById('memberStatus').textContent = '⚠️ Please enter name and email.';
+            return;
+        }
+
+        const newMember = {
+            id: 'm_' + Date.now(),
+            name: name,
+            email: email,
+            role: role
+        };
+
+        memberList.push(newMember);
+        saveMembers(memberList);
+        renderMembers();
+
+        document.getElementById('memberName').value = '';
+        document.getElementById('memberEmail').value = '';
+        document.getElementById('memberRole').value = '';
+        document.getElementById('memberStatus').textContent = '✅ ' + name + ' added!';
+        setTimeout(() => document.getElementById('memberStatus').textContent = '', 3000);
+    });
+
+    // ============================================================
+    // REMOVE MEMBER
+    // ============================================================
+    function removeMember(id) {
+        if (confirm('Remove this member?')) {
+            memberList = memberList.filter(m => m.id !== id);
+            saveMembers(memberList);
+            renderMembers();
+        }
+    }
+
+    // ============================================================
+    // COMPOSE EMAIL
+    // ============================================================
+    function composeEmail(email, name) {
+        document.getElementById('emailTo').value = email;
+        document.getElementById('emailSubject').value = '';
+        document.getElementById('emailBody').value = '';
+        document.getElementById('emailTo').focus();
+    }
+
+    // ============================================================
+    // SEND EMAIL (mock - opens mail client)
+    // ============================================================
+    document.getElementById('sendEmailBtn').addEventListener('click', () => {
+        const to = document.getElementById('emailTo').value.trim();
+        const subject = document.getElementById('emailSubject').value.trim();
+        const body = document.getElementById('emailBody').value.trim();
+
+        if (!to || !subject || !body) {
+            document.getElementById('emailStatus').textContent = '⚠️ Please fill all fields.';
+            return;
+        }
+
+        // Open mail client
+        window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        document.getElementById('emailStatus').textContent = '📧 Email opened in your mail client!';
+        setTimeout(() => document.getElementById('emailStatus').textContent = '', 3000);
+    });
+
+    // Enter key for add member form
+    document.getElementById('memberName').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('addMemberBtn').click();
+    });
+    document.getElementById('memberEmail').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('addMemberBtn').click();
+    });
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    renderMembers();
+    console.log('👥 Members page loaded. Members:', memberList.length);
+</script>
+</body>
+</html>
