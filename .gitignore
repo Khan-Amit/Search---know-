@@ -1,124 +1,29 @@
 # OS junk
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 Desktop.ini
-*.icloud
 
 # Editor files
 .vscode/
 .idea/
-*.iml
-.project
-.classpath
-.settings/
-*.code-workspace
 *.swp
 *.swo
-*~
 
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-yarn.lock
-.pnpm-debug.log*
-pnpm-lock.yaml
+# Logs
+*.log
+logs/
 
-# Build output
+# Secrets
+.env
+*.key
+*.pem
+
+# Build
 dist/
 build/
-out/
-*.min.js
-*.min.css
-*.bundle.js
-*.chunk.js
-*.map
-
-# Environment & secrets
-.env
-.env.local
-.env.*.local
-*.pem
-*.key
-*.crt
-*.p12
-*.p8
-
-# Logs & temp
-logs/
-*.log
-temp/
-tmp/
-.cache/
-.parcel-cache/
-
-# Test coverage
-coverage/
-.nyc_output/
-*.lcov
-
-# Archive files
-*.zip
-*.tar.gz
-*.rar
-*.7z
-*.gz
-*.tgz
-
-# Database files
-*.localstorage
-*.sqlite
-*.db
-*.db-journal
-
-# MY-AI specific - DO NOT ignore the JSON file!
-# apps.json should be tracked!
-visitor_log.json
-visitor_logs/
-backup/
-*secret*.js
-*api-key*.js
-*credentials*.js
-
-# Docker
-docker-compose.override.yml
-.dockerignore
-Dockerfile.dev
-
-# GitHub
-.github/
-.gh-pages/
-
-# Python (if used)
-__pycache__/
-*.py[cod]
-*.so
-.Python
-env/
-venv/
-.venv/
-
-# PHP (if used)
-*.log
-*.sql
-*.sql.gz
-
-# Ruby (if used)
-*.gem
-.bundle/
-Gemfile.lock
-
-# MacOS metadata
-*.icloud
+node_modules/
 
 # ============================================================
-# IMPORTANT: DO NOT ignore apps.json - it's your backend!
-# apps.json is tracked and should be committed.
+# IMPORTANT: DO NOT ignore apps.json - it's your data!
+# apps.json should be tracked and committed.
 # ============================================================
