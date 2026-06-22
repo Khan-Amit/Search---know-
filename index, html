@@ -6,108 +6,98 @@
   <title>Search---know-™</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ============================================================
-       LIGHT SILVER THEME
-       ============================================================ */
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#d0d0d0;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px;color:#1a1a1a}
-    .container{max-width:960px;width:100%;background:#e0e0e0;border-radius:24px;padding:30px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.08)}
+    body{background:#f0f2f5;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px;color:#1a1a1a}
+    .container{max-width:960px;width:100%;background:#ffffff;border-radius:24px;padding:30px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
 
     /* ===== BRAND ===== */
-    .brand{text-align:center;margin-bottom:30px}
-    .brand .logo{font-size:3.2rem;line-height:1;display:block;margin-bottom:4px}
-    .brand h1{font-size:2.2rem;font-weight:300;letter-spacing:2px;color:#1a1a1a;margin-top:2px}
-    .brand h1 small{font-size:1rem;font-weight:400;color:#555;letter-spacing:1px}
-    .brand .byline{font-size:0.9rem;color:#555;margin-top:4px}
-    .brand .byline a{color:#1a1a1a;text-decoration:none;border-bottom:1px dotted #888}
-    .brand .byline a:hover{color:#000}
-    .brand .mardukh{font-size:0.7rem;color:#888;margin-top:4px;letter-spacing:1px}
-
-    /* ===== VISITOR COUNTER ===== */
-    .visitor-counter{background:#f5f5f5;border-radius:16px;padding:16px 20px;margin-bottom:20px;border:1px solid #ddd;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
-    .visitor-counter .stat{display:flex;align-items:center;gap:6px;color:#555;font-size:.85rem}
-    .visitor-counter .stat strong{color:#1a1a1a;font-size:1.1rem}
-    .visitor-counter .online-dot{display:inline-block;width:8px;height:8px;background:#27ae60;border-radius:50%;animation:pulse 1.5s infinite}
-    @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
-    .visitor-counter .refresh-btn{background:transparent;border:1px solid #ccc;color:#666;padding:4px 12px;border-radius:20px;font-size:.7rem;cursor:pointer;transition:.2s}
-    .visitor-counter .refresh-btn:hover{background:#ddd;color:#000}
+    .brand{text-align:center;margin-bottom:20px}
+    .brand .logo{font-size:3.5rem;line-height:1;display:block;margin-bottom:4px}
+    .brand h1{font-size:2rem;font-weight:300;letter-spacing:2px;color:#1a1a1a}
+    .brand h1 small{font-size:1rem;font-weight:400;color:#666}
+    .brand .byline{font-size:0.8rem;color:#888;margin-top:4px}
+    .brand .byline a{color:#1a1a1a;text-decoration:none;border-bottom:1px dotted #ccc}
+    .brand .mardukh{font-size:0.65rem;color:#aaa;margin-top:2px;letter-spacing:1px}
 
     /* ===== SEARCH BAR ===== */
-    .search-area{background:#f0f0f0;border-radius:60px;padding:8px 8px 8px 20px;display:flex;align-items:center;gap:8px;border:1px solid #ccc;margin-bottom:12px}
-    .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:14px 0;font-size:1.1rem;color:#1a1a1a;outline:none;min-width:0}
-    .search-area input::placeholder{color:#888;font-style:italic}
-    .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:12px 28px;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;transition:all .2s}
-    .search-area button:hover{background:#333;transform:scale(1.01)}
+    .search-area{max-width:580px;margin:16px auto 24px;background:#fff;border-radius:60px;padding:6px 6px 6px 24px;display:flex;align-items:center;border:2px solid #e0e0e0;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,0.02)}
+    .search-area:focus-within{border-color:#1a1a1a;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+    .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:12px 0;font-size:1.1rem;color:#1a1a1a;outline:none;min-width:0}
+    .search-area input::placeholder{color:#999}
+    .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:10px 28px;font-weight:600;font-size:.95rem;color:#fff;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .search-area button:hover{background:#333;transform:scale(1.02)}
 
-    /* ===== MODE TOGGLE – DYNAMIC APPS ===== */
-    .mode-toggle{display:flex;gap:6px;margin-bottom:18px;justify-content:center;flex-wrap:wrap}
-    .mode-toggle button{background:#f0f0f0;border:1px solid #ccc;border-radius:40px;padding:8px 16px;font-size:.75rem;font-weight:500;color:#333;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
-    .mode-toggle button:hover{background:#ddd;color:#000}
-    .mode-toggle button.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a;box-shadow:0 0 12px rgba(0,0,0,0.08)}
-    .mode-toggle button i{font-size:1rem}
+    /* ===== APP GRID ===== */
+    .app-section{margin:20px 0 12px}
+    .app-section .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+    .app-section .section-header h2{font-size:1rem;font-weight:400;color:#666;letter-spacing:1px}
+    .app-section .section-header .add-btn{background:#f0f0f0;border:1px solid #ddd;border-radius:40px;padding:6px 16px;font-size:.75rem;color:#333;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+    .app-section .section-header .add-btn:hover{background:#e0e0e0;border-color:#aaa}
+    .app-section .section-header .add-btn i{font-size:.8rem}
 
-    /* ===== GEO TOGGLE ===== */
-    .geo-toggle{display:flex;justify-content:flex-end;gap:12px;margin:0 0 16px;font-size:.9rem}
-    .geo-toggle label{display:flex;align-items:center;gap:6px;color:#333;cursor:pointer}
-    .geo-toggle input[type="radio"]{accent-color:#1a1a1a;width:16px;height:16px}
-    .geo-toggle input[type="radio"]:checked+span{color:#000;font-weight:500}
+    .app-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
+    .app-item{background:#f7f8fa;border:1px solid #e8e8e8;border-radius:16px;padding:14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px;min-height:90px;cursor:pointer;transition:all .2s;text-decoration:none;color:#1a1a1a;position:relative}
+    .app-item:hover{background:#f0f0f0;border-color:#ccc;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+    .app-item .app-icon{font-size:2rem;margin-bottom:6px;display:block}
+    .app-item .app-label{font-size:.7rem;font-weight:500;text-align:center;color:#444;max-width:80px;word-break:break-word}
+    .app-item .app-delete{position:absolute;top:-6px;right:-6px;background:#ff4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.6rem;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+    .app-item:hover .app-delete{display:flex}
+    .app-item .app-badge{position:absolute;top:-6px;right:-6px;background:#1a1a1a;color:#fff;border-radius:12px;padding:1px 8px;font-size:.5rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+    .app-item.add-new{background:transparent;border:2px dashed #ccc;min-height:80px;min-width:80px;justify-content:center;color:#999}
+    .app-item.add-new:hover{background:#f7f8fa;border-color:#aaa;color:#666}
 
-    /* ===== AI OVERVIEW ===== */
-    .ai-overview{background:#f5f5f5;border-left:4px solid #1a1a1a;border-radius:8px;padding:16px 20px;margin-bottom:20px;display:none}
-    .ai-overview.visible{display:block}
-    .ai-overview .label{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:#666;display:flex;align-items:center;gap:8px;margin-bottom:4px}
-    .ai-overview .label span{background:#1a1a1a;color:#fff;padding:0 10px;border-radius:12px;font-weight:600;font-size:.7rem}
-    .ai-overview .summary{font-size:1rem;line-height:1.5;color:#1a1a1a}
+    /* ===== VISITOR COUNTER ===== */
+    .visitor-counter{background:#f7f8fa;border-radius:16px;padding:12px 20px;margin:20px 0 12px;border:1px solid #eee;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
+    .visitor-counter .stat{display:flex;align-items:center;gap:6px;color:#666;font-size:.8rem}
+    .visitor-counter .stat strong{color:#1a1a1a;font-size:1rem}
+    .visitor-counter .online-dot{display:inline-block;width:8px;height:8px;background:#27ae60;border-radius:50%;animation:pulse 1.5s infinite}
+    @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+    .visitor-counter .refresh-btn{background:transparent;border:1px solid #ddd;color:#888;padding:4px 14px;border-radius:20px;font-size:.65rem;cursor:pointer;transition:.2s}
+    .visitor-counter .refresh-btn:hover{background:#eee;color:#333}
 
     /* ===== RESULTS ===== */
-    #results{margin-top:0}
-    .result-card{background:#f5f5f5;border-radius:12px;padding:16px 20px;margin-bottom:12px;border:1px solid #ddd}
-    .result-card h3{font-size:1.1rem;font-weight:600;margin-bottom:4px;color:#1a1a1a}
-    .result-card .url{font-size:.8rem;color:#555;margin-bottom:4px;word-break:break-all}
-    .result-card .snippet{font-size:.95rem;line-height:1.4;color:#1a1a1a}
-    .result-card .badge{display:inline-block;background:#ccc;padding:2px 10px;border-radius:20px;font-size:.7rem;font-weight:500;color:#333;margin-top:6px}
-    .info-message{text-align:center;color:#666;padding:30px 0;font-style:italic}
-    .loader{text-align:center;color:#666;padding:20px 0;display:none}
-    .loader .spinner{display:inline-block;width:24px;height:24px;border:3px solid #ccc;border-top:3px solid #1a1a1a;border-radius:50%;animation:spin .8s linear infinite}
+    #results{margin-top:12px}
+    .result-card{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #eee}
+    .result-card h3{font-size:1rem;font-weight:600;color:#1a1a1a}
+    .result-card .url{font-size:.75rem;color:#888;margin:2px 0}
+    .result-card .snippet{font-size:.9rem;color:#444;line-height:1.4}
+    .result-card .badge{display:inline-block;background:#e0e0e0;padding:2px 10px;border-radius:12px;font-size:.65rem;color:#555;margin-top:4px}
+    .info-message{text-align:center;color:#999;padding:30px 0;font-style:italic}
+    .loader{text-align:center;color:#999;padding:20px 0;display:none}
+    .loader .spinner{display:inline-block;width:24px;height:24px;border:3px solid #e0e0e0;border-top:3px solid #1a1a1a;border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
     /* ===== VISITOR LOG ===== */
-    .visitor-log{background:#f5f5f5;border-radius:12px;padding:16px 20px;margin-top:16px;border:1px solid #ddd;max-height:200px;overflow-y:auto}
-    .visitor-log h3{color:#1a1a1a;font-weight:300;font-size:.9rem;margin-bottom:10px;letter-spacing:1px}
-    .visitor-log table{width:100%;font-size:.75rem;border-collapse:collapse}
-    .visitor-log th{text-align:left;color:#666;font-weight:500;padding-bottom:6px;border-bottom:1px solid #ccc}
-    .visitor-log td{padding:4px 0;color:#333;border-bottom:1px solid #eee}
-    .visitor-log .flag{font-size:1rem}
-    .visitor-log .ip{color:#666;font-size:.65rem}
-    .visitor-log .timestamp{color:#888;font-size:.65rem}
-    .visitor-log::-webkit-scrollbar{width:4px}
-    .visitor-log::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px}
-    .visitor-log::-webkit-scrollbar-track{background:transparent}
-
-    /* ===== PAYMENT METHODS ===== */
-    .payment-methods{background:#f5f5f5;border-radius:12px;padding:16px 20px;margin-top:16px;border:1px solid #ddd;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
-    .payment-methods .label{color:#666;font-size:.75rem;margin-right:8px}
-    .payment-methods .method{display:flex;align-items:center;gap:4px;background:#fff;padding:6px 14px;border-radius:40px;border:1px solid #ccc;font-size:.75rem;color:#333}
-    .payment-methods .method .icon{font-size:1rem}
+    .visitor-log{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-top:12px;border:1px solid #eee;max-height:180px;overflow-y:auto}
+    .visitor-log h3{font-size:.8rem;font-weight:400;color:#888;margin-bottom:8px;letter-spacing:1px}
+    .visitor-log table{width:100%;font-size:.7rem;border-collapse:collapse}
+    .visitor-log th{text-align:left;color:#999;font-weight:500;padding-bottom:4px;border-bottom:1px solid #eee}
+    .visitor-log td{padding:3px 0;color:#555;border-bottom:1px solid #f0f0f0}
+    .visitor-log .flag{font-size:.9rem}
+    .visitor-log .ip{color:#aaa;font-size:.6rem}
+    .visitor-log .timestamp{color:#bbb;font-size:.6rem}
+    .visitor-log::-webkit-scrollbar{width:3px}
+    .visitor-log::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
 
     /* ===== FOOTER ===== */
-    .footer{margin-top:40px;text-align:center;font-size:.75rem;color:#666;border-top:1px solid #ccc;padding-top:20px;letter-spacing:.5px}
-    .footer a{color:#555;text-decoration:none}
+    .footer{margin-top:24px;text-align:center;font-size:.7rem;color:#aaa;border-top:1px solid #eee;padding-top:16px}
+    .footer a{color:#888;text-decoration:none}
     .footer a:hover{color:#1a1a1a}
-    .footer .open-source{font-size:.65rem;color:#888;margin-top:4px}
+    .footer .open-source{font-size:.6rem;color:#bbb;margin-top:2px}
 
-    /* ===== ADMIN PANEL ===== */
-    .admin-panel{display:none;background:#f5f5f5;border-radius:16px;padding:20px;margin-bottom:20px;border:1px solid #ddd}
+    /* ===== ADMIN TOGGLE ===== */
+    .admin-toggle{position:fixed;bottom:16px;right:16px;background:#fff;border:1px solid #ddd;border-radius:40px;padding:6px 14px;color:#888;font-size:.65rem;cursor:pointer;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+    .admin-toggle:hover{background:#f0f0f0;color:#333}
+    .admin-panel{display:none;background:#f7f8fa;border-radius:16px;padding:16px 20px;margin-top:16px;border:1px solid #eee}
     .admin-panel.visible{display:block}
-    .admin-panel h3{color:#1a1a1a;font-weight:300;letter-spacing:1px;margin-bottom:12px}
-    .admin-panel label{color:#666;font-size:.85rem;display:block;margin:8px 0 4px}
-    .admin-panel input,.admin-panel textarea{width:100%;background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 12px;color:#1a1a1a;font-size:.9rem}
-    .admin-panel button{background:#1a1a1a;color:#fff;border:none;border-radius:40px;padding:8px 20px;font-weight:600;margin-top:12px;cursor:pointer}
+    .admin-panel h3{font-size:.9rem;font-weight:400;color:#444;margin-bottom:10px}
+    .admin-panel label{color:#888;font-size:.75rem;display:block;margin:6px 0 3px}
+    .admin-panel input,.admin-panel textarea{width:100%;background:#fff;border:1px solid #ddd;border-radius:8px;padding:6px 12px;color:#1a1a1a;font-size:.85rem}
+    .admin-panel button{background:#1a1a1a;color:#fff;border:none;border-radius:40px;padding:6px 18px;font-size:.75rem;cursor:pointer;margin-top:8px}
     .admin-panel button:hover{background:#333}
-    .admin-toggle{position:fixed;bottom:20px;right:20px;background:#f5f5f5;border:1px solid #ccc;border-radius:40px;padding:8px 16px;color:#666;font-size:.7rem;cursor:pointer;z-index:999}
-    .admin-toggle:hover{background:#ddd;color:#000}
+    .admin-panel .admin-status{color:#27ae60;font-size:.75rem;margin-top:6px}
 
-    @media(max-width:480px){.search-area{border-radius:40px;padding:4px 4px 4px 16px}.search-area input[type="text"]{font-size:1rem;padding:12px 0}.search-area button{padding:10px 18px;font-size:.9rem}.brand h1{font-size:1.8rem}}
+    @media(max-width:480px){.search-area{padding:4px 4px 4px 16px;border-radius:40px}.search-area input[type="text"]{font-size:.95rem;padding:10px 0}.search-area button{padding:8px 16px;font-size:.8rem}.app-item{min-width:70px;min-height:70px;padding:10px 12px}.app-item .app-icon{font-size:1.5rem}.app-item .app-label{font-size:.6rem}.brand h1{font-size:1.5rem}}
   </style>
 </head>
 <body>
@@ -116,84 +106,64 @@
   <!-- ===== BRAND ===== -->
   <div class="brand">
     <div class="logo">🔍</div>
-    <h1>Search---know-™ <small>MY-AI</small></h1>
-    <div class="byline">
-      Created by <strong>Seliiim Ahmed</strong> &bull; 
-      <a href="mailto:amit.khanna.1082@gmail.com">amit.khanna.1082@gmail.com</a>
-    </div>
-    <div class="mardukh">A part of Mardukh system ® • All rights reserved</div>
-  </div>
-
-  <!-- ===== VISITOR COUNTER ===== -->
-  <div class="visitor-counter" id="visitorCounter">
-    <div class="stat">👁️ <strong id="totalVisitors">...</strong> <span>total</span></div>
-    <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> <span>online</span></div>
-    <div class="stat">🌍 <span id="topCountries">Loading...</span></div>
-    <button class="refresh-btn" onclick="refreshStats()">↻</button>
+    <h1>Search---know- <small>™</small></h1>
+    <div class="byline">A part of <strong>Mardukh system</strong> ® • Created by <a href="mailto:amit.khanna.1082@gmail.com">Seliiim Ahmed</a></div>
+    <div class="mardukh">All rights reserved • Open source</div>
   </div>
 
   <!-- ===== SEARCH BAR ===== -->
   <div class="search-area">
-    <input type="text" id="queryInput" placeholder="Search…" autofocus>
-    <button id="searchBtn">Search</button>
+    <input type="text" id="queryInput" placeholder="Search anything..." autofocus>
+    <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
   </div>
 
-  <!-- ===== APP BUTTONS – DYNAMIC FROM JSON ===== -->
-  <div class="mode-toggle" id="appContainer"></div>
-
-  <!-- ===== GEO TOGGLE ===== -->
-  <div class="geo-toggle">
-    <label><input type="radio" name="geo" value="global" checked><span>🌍 Global</span></label>
-    <label><input type="radio" name="geo" value="local"><span>📍 Local</span></label>
+  <!-- ===== APP GRID ===== -->
+  <div class="app-section">
+    <div class="section-header">
+      <h2><i class="fas fa-th"></i> My Apps</h2>
+      <button class="add-btn" id="addAppBtn"><i class="fas fa-plus"></i> Add App</button>
+    </div>
+    <div class="app-grid" id="appGrid"></div>
   </div>
 
-  <!-- ===== AI OVERVIEW ===== -->
-  <div id="aiOverview" class="ai-overview">
-    <div class="label"><span>AI Overview</span> ✦</div>
-    <div class="summary" id="overviewText"></div>
+  <!-- ===== VISITOR COUNTER ===== -->
+  <div class="visitor-counter" id="visitorCounter">
+    <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
+    <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
+    <div class="stat">🌍 <span id="topCountries">Loading...</span></div>
+    <button class="refresh-btn" onclick="refreshStats()">↻</button>
   </div>
 
   <!-- ===== RESULTS ===== -->
-  <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:8px;">Loading…</p></div>
-  <div id="results"><div class="info-message">🔍 Enter a query above</div></div>
-
-  <!-- ===== PAYMENT METHODS ===== -->
-  <div class="payment-methods">
-    <span class="label">💳 We Accept:</span>
-    <span class="method"><span class="icon">🏦</span> bKash</span>
-    <span class="method"><span class="icon">📱</span> Nagad</span>
-    <span class="method"><span class="icon">💳</span> Stripe</span>
-    <span class="method"><span class="icon">🌐</span> PayPal</span>
-    <span class="method"><span class="icon">🏦</span> Bank Transfer</span>
-    <span style="color:#888;font-size:.65rem;margin-left:4px;">• Secure • Fast • Local</span>
-  </div>
+  <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:6px;font-size:.8rem;">Searching...</p></div>
+  <div id="results"><div class="info-message">🔍 Type something and press Search</div></div>
 
   <!-- ===== VISITOR LOG ===== -->
   <div class="visitor-log" id="visitorLog">
-    <h3>🕵️ Visitor Log (last 20 visits)</h3>
+    <h3>🕵️ Recent Visitors</h3>
     <table>
-      <thead><tr><th>#</th><th>Time</th><th>Country</th><th>City</th><th>IP</th></tr></thead>
-      <tbody id="logBody"><tr><td colspan="5" style="color:#888;text-align:center;padding:10px;">No visits recorded yet.</td></tr></tbody>
+      <thead><tr><th>#</th><th>Time</th><th>Country</th><th>IP</th></tr></thead>
+      <tbody id="logBody"><tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr></tbody>
     </table>
   </div>
 
   <!-- ===== ADMIN PANEL ===== -->
   <div id="adminPanel" class="admin-panel">
-    <h3>🛡️ Block List (Admin)</h3>
-    <label>Blocked Countries (comma‑separated, e.g. SG, CN)</label>
+    <h3>🛡️ Admin - Block List</h3>
+    <label>Blocked Countries (comma-separated)</label>
     <input type="text" id="blockedCountriesInput" placeholder="SG, CN, RU">
-    <label>Blocked IPs (comma‑separated)</label>
+    <label>Blocked IPs (comma-separated)</label>
     <textarea id="blockedIPsInput" rows="2" placeholder="192.168.1.1, 10.0.0.1"></textarea>
-    <button onclick="saveBlockList()">💾 Save Block List</button>
-    <button onclick="clearBlockList()" style="background:#666;color:#fff;margin-left:8px;">🗑️ Clear All</button>
-    <div id="adminStatus" style="color:#27ae60;margin-top:8px;"></div>
+    <button onclick="saveBlockList()">💾 Save</button>
+    <button onclick="clearBlockList()" style="background:#666;margin-left:8px;">🗑️ Clear</button>
+    <div class="admin-status" id="adminStatus"></div>
   </div>
 
   <!-- ===== FOOTER ===== -->
   <div class="footer">
-    <span>© 2026 Search---know-™ — A part of Mardukh system ®</span>
+    <span>© 2026 Search---know-™ • Mardukh system ®</span>
     <br>
-    <span class="open-source">This site is open source. <a href="#" onclick="alert('Improve this page on GitHub!')">Improve this page.</a></span>
+    <span class="open-source">Open source • <a href="#" onclick="alert('Improve on GitHub!')">Improve this page</a></span>
   </div>
 
   <button class="admin-toggle" onclick="toggleAdmin()">⚙️</button>
@@ -201,119 +171,159 @@
 
 <script>
 // ============================================================
-// 1. APP CONFIGURATION – ADD YOUR APPS HERE
+// 1. APP CONFIGURATION - Add your apps here!
 // ============================================================
-const APP_CONFIG = [
-  {
-    id: "web",
-    label: "Web Engine",
-    icon: "fa-globe",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "images",
-    label: "Images",
-    icon: "fa-image",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "movies",
-    label: "Movies",
-    icon: "fa-film",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "finance",
-    label: "Finance",
-    icon: "fa-chart-pie",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "cosmic",
-    label: "Cosmic",
-    icon: "fa-meteor",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "countit",
-    label: "Count It",
-    icon: "fa-calculator",
-    type: "search",
-    url: null,
-    active: true
-  },
-  // ===== STANDALONE APPS – OPEN IN NEW TAB =====
-  {
-    id: "enkomos",
-    label: "ENKOMOS",
-    icon: "fa-satellite",
-    type: "app",
-    url: "https://khan-amit.github.io/ENKOMOS-_WEB",
-    active: true
-  },
-  {
-    id: "meetingluck",
-    label: "Meeting Luck",
-    icon: "fa-crown",
-    type: "app",
-    url: "https://khan-amit.github.io/What-Is--seliim/",
-    active: true
-  },
-  {
-    id: "kongming",
-    label: "Kongming-V1",
-    icon: "fa-chess-king",
-    type: "app",
-    url: "https://khan-amit.github.io/Kongming-V1",
-    active: true
-  },
-  // ===== EXTRA APPS – ADD YOUR NEW APPS HERE =====
-  {
-    id: "bazar",
-    label: "Bazar",
-    icon: "fa-store",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "wisdom",
-    label: "Wisdom",
-    icon: "fa-brain",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "csfs",
-    label: "CSFS",
-    icon: "fa-shield-halved",
-    type: "search",
-    url: null,
-    active: true
-  },
-  {
-    id: "enigma",
-    label: "Enigma",
-    icon: "fa-lock",
-    type: "search",
-    url: null,
-    active: true
-  }
+const DEFAULT_APPS = [
+  { id: 'web', label: 'Web', icon: 'fa-globe', type: 'search', url: null },
+  { id: 'images', label: 'Images', icon: 'fa-image', type: 'search', url: null },
+  { id: 'movies', label: 'Movies', icon: 'fa-film', type: 'search', url: null },
+  { id: 'finance', label: 'Finance', icon: 'fa-chart-pie', type: 'search', url: null },
+  { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor', type: 'search', url: null },
+  { id: 'countit', label: 'Count It', icon: 'fa-calculator', type: 'search', url: null },
+  { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', type: 'app', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
+  { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', type: 'app', url: 'https://khan-amit.github.io/What-Is--seliim/' },
+  { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', type: 'app', url: 'https://khan-amit.github.io/Kongming-V1' },
+  { id: 'bazar', label: 'Bazar', icon: 'fa-store', type: 'search', url: null },
+  { id: 'wisdom', label: 'Wisdom', icon: 'fa-brain', type: 'search', url: null },
+  { id: 'csfs', label: 'CSFS', icon: 'fa-shield-halved', type: 'search', url: null },
+  { id: 'enigma', label: 'Enigma', icon: 'fa-lock', type: 'search', url: null }
 ];
 
+const APPS_STORAGE_KEY = 'searchknow_apps';
+
+function loadApps() {
+  try {
+    const stored = localStorage.getItem(APPS_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  // Merge defaults with stored to keep new apps
+  const saved = JSON.parse(localStorage.getItem(APPS_STORAGE_KEY) || '[]');
+  const merged = [...DEFAULT_APPS];
+  saved.forEach(app => {
+    if (!merged.find(a => a.id === app.id)) {
+      merged.push(app);
+    }
+  });
+  return merged;
+}
+
+function saveApps(apps) {
+  localStorage.setItem(APPS_STORAGE_KEY, JSON.stringify(apps));
+}
+
+let appList = loadApps();
+let currentAppId = appList[0]?.id || 'web';
+
 // ============================================================
-// 2. VISITOR TRACKING
+// 2. RENDER APP GRID
+// ============================================================
+const appGrid = document.getElementById('appGrid');
+
+function renderApps() {
+  appGrid.innerHTML = '';
+  appList.forEach(app => {
+    const div = document.createElement('div');
+    div.className = 'app-item';
+    div.title = app.label + (app.type === 'app' ? ' (opens in new tab)' : '');
+    
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'app-delete';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.title = 'Remove this app';
+    deleteBtn.onclick = (e) => {
+      e.stopPropagation();
+      removeApp(app.id);
+    };
+    div.appendChild(deleteBtn);
+    
+    // Icon
+    const icon = document.createElement('span');
+    icon.className = 'app-icon';
+    icon.innerHTML = `<i class="fas ${app.icon}"></i>`;
+    div.appendChild(icon);
+    
+    // Label
+    const label = document.createElement('span');
+    label.className = 'app-label';
+    label.textContent = app.label;
+    div.appendChild(label);
+    
+    // App badge for standalone
+    if (app.type === 'app') {
+      const badge = document.createElement('span');
+      badge.className = 'app-badge';
+      badge.textContent = 'APP';
+      div.appendChild(badge);
+    }
+    
+    div.onclick = () => openApp(app);
+    appGrid.appendChild(div);
+  });
+  
+  // Add "Add App" button
+  const addDiv = document.createElement('div');
+  addDiv.className = 'app-item add-new';
+  addDiv.innerHTML = `<span style="font-size:2rem;">+</span><span style="font-size:.6rem;color:#999;margin-top:4px;">Add App</span>`;
+  addDiv.onclick = () => showAddAppModal();
+  appGrid.appendChild(addDiv);
+}
+
+// ============================================================
+// 3. OPEN APP
+// ============================================================
+function openApp(app) {
+  if (app.type === 'app' && app.url) {
+    window.open(app.url, '_blank');
+  } else {
+    currentAppId = app.id;
+    const q = document.getElementById('queryInput').value.trim();
+    if (q) performSearch(q, app.id);
+    else {
+      document.getElementById('results').innerHTML = `<div class="info-message">🔍 Type something and press Search for "${app.label}"</div>`;
+    }
+  }
+}
+
+// ============================================================
+// 4. ADD / REMOVE APP
+// ============================================================
+function removeApp(appId) {
+  if (confirm('Remove "' + appList.find(a => a.id === appId)?.label + '" from your apps?')) {
+    appList = appList.filter(a => a.id !== appId);
+    saveApps(appList);
+    renderApps();
+  }
+}
+
+function showAddAppModal() {
+  const label = prompt('Enter app name (e.g., Yahoo Weather):');
+  if (!label || label.trim() === '') return;
+  
+  const url = prompt('Enter app URL (e.g., https://weather.com):');
+  if (!url || url.trim() === '') return;
+  
+  const icon = prompt('Enter Font Awesome icon (e.g., fa-cloud-sun):', 'fa-cloud-sun');
+  
+  const newApp = {
+    id: 'app_' + Date.now(),
+    label: label.trim(),
+    icon: icon || 'fa-link',
+    type: 'app',
+    url: url.trim()
+  };
+  
+  appList.push(newApp);
+  saveApps(appList);
+  renderApps();
+  alert('✅ App "' + label + '" added!');
+}
+
+// ============================================================
+// 5. VISITOR TRACKING
 // ============================================================
 const LOG_KEY = 'searchknow_visit_log';
 const TOTAL_KEY = 'searchknow_total_visits';
@@ -322,13 +332,6 @@ const ONLINE_KEY = 'searchknow_online';
 const VISITOR_ID_KEY = 'searchknow_visitor_id';
 const BLOCKED_COUNTRIES_KEY = 'searchknow_blocked_countries';
 const BLOCKED_IPS_KEY = 'searchknow_blocked_ips';
-
-const EXCLUDED_IPS = ['127.0.0.1'];
-const EXCLUDED_COUNTRIES = ['SG'];
-
-function isExcluded(ip, country) {
-  return EXCLUDED_IPS.includes(ip) || EXCLUDED_COUNTRIES.includes(country);
-}
 
 function getBlockedCountries() {
   const val = localStorage.getItem(BLOCKED_COUNTRIES_KEY);
@@ -372,12 +375,7 @@ async function fetchVisitorData() {
     const res = await fetch('https://ipapi.co/json/');
     if (!res.ok) throw new Error('IP API failed');
     const data = await res.json();
-    return {
-      ip: data.ip || 'unknown',
-      country: data.country_code || 'XX',
-      countryName: data.country_name || 'Unknown',
-      city: data.city || 'Unknown'
-    };
+    return { ip: data.ip || 'unknown', country: data.country_code || 'XX', countryName: data.country_name || 'Unknown', city: data.city || 'Unknown' };
   } catch (e) {
     return { ip: 'unknown', country: 'XX', countryName: 'Unknown', city: 'Unknown' };
   }
@@ -386,7 +384,6 @@ async function fetchVisitorData() {
 async function logVisit() {
   const info = await fetchVisitorData();
   const ip = info.ip, country = info.country, countryName = info.countryName, city = info.city;
-  if (isExcluded(ip, country)) return;
   const blockedCountries = getBlockedCountries(), blockedIPs = getBlockedIPs();
   if (blockedCountries.includes(country) || blockedIPs.includes(ip)) return;
 
@@ -436,12 +433,12 @@ function updateUI() {
   const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
   const tbody = document.getElementById('logBody');
   if (log.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="color:#888;text-align:center;padding:10px;">No visits recorded yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr>';
   } else {
     tbody.innerHTML = log.slice(0, 20).map((entry, i) => {
       const flag = entry.country === 'XX' ? '🌍' : entry.country.split('').map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
       const time = new Date(entry.timestamp).toLocaleString();
-      return `<tr><td>${i+1}</td><td class="timestamp">${time}</td><td><span class="flag">${flag}</span> ${entry.countryName}</td><td>${entry.city}</td><td class="ip">${entry.ip}</td></tr>`;
+      return `<tr><td>${i+1}</td><td class="timestamp">${time}</td><td><span class="flag">${flag}</span> ${entry.countryName}</td><td class="ip">${entry.ip}</td></tr>`;
     }).join('');
   }
 }
@@ -451,90 +448,39 @@ logVisit();
 setInterval(updateUI, 30000);
 
 // ============================================================
-// 3. RENDER APP BUTTONS
-// ============================================================
-const appContainer = document.getElementById('appContainer');
-let currentAppId = APP_CONFIG[0]?.id || 'web';
-
-function renderAppButtons() {
-  appContainer.innerHTML = '';
-  const activeApps = APP_CONFIG.filter(app => app.active);
-  
-  activeApps.forEach((app, index) => {
-    const btn = document.createElement('button');
-    btn.className = index === 0 ? 'active' : '';
-    btn.innerHTML = `<i class="fas ${app.icon}"></i> ${app.label}`;
-    btn.dataset.appId = app.id;
-    
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      currentAppId = app.id;
-      
-      // If it's a standalone app, open in new tab
-      if (app.type === 'app' && app.url) {
-        window.open(app.url, '_blank');
-      } else {
-        // Search mode
-        const q = document.getElementById('queryInput').value.trim();
-        if (q) performSearch(q, app.id);
-      }
-    });
-    
-    appContainer.appendChild(btn);
-  });
-}
-
-// ============================================================
-// 4. SEARCH ENGINE
+// 6. SEARCH ENGINE
 // ============================================================
 const queryInput = document.getElementById('queryInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
 const loader = document.getElementById('loader');
-const overviewDiv = document.getElementById('aiOverview');
-const overviewText = document.getElementById('overviewText');
 
 async function performSearch(query, appId) {
   if (!query) {
-    resultsDiv.innerHTML = '<div class="info-message">🔍 Enter a query above</div>';
+    resultsDiv.innerHTML = '<div class="info-message">🔍 Type something and press Search</div>';
     return;
   }
 
   loader.style.display = 'block';
   resultsDiv.innerHTML = '';
-  overviewDiv.classList.remove('visible');
 
   try {
     await new Promise(resolve => setTimeout(resolve, 600));
-    
-    const app = APP_CONFIG.find(a => a.id === appId) || APP_CONFIG[0];
+    const app = appList.find(a => a.id === appId) || appList[0];
     const results = Math.floor(Math.random() * 100) + 1;
     
-    // Generate search results based on app type
-    let searchHtml = '';
-    const searchQueries = [
-      `${query} - result 1`,
-      `${query} - result 2`,
-      `${query} - result 3`,
-      `${query} - result 4`,
-      `${query} - result 5`
-    ];
-    
-    searchHtml = searchQueries.map((q, i) => `
-      <div class="result-card">
-        <h3><i class="fas ${app.icon}" style="margin-right:8px;"></i> ${q}</h3>
-        <div class="url">https://searchknow.app/${appId}/${i+1}</div>
-        <div class="snippet">This is a search result for "${query}" in the ${app.label} module. Found ${results} total results.</div>
-        <div class="badge">${app.label}</div>
-      </div>
-    `).join('');
-    
-    // AI Overview
-    overviewText.textContent = `AI analyzed "${query}" and found ${results} relevant results across ${app.label}. The most relevant information is displayed below.`;
-    overviewDiv.classList.add('visible');
-    
-    resultsDiv.innerHTML = searchHtml;
+    let html = '';
+    for (let i = 1; i <= 5; i++) {
+      html += `
+        <div class="result-card">
+          <h3><i class="fas ${app.icon}" style="margin-right:8px;"></i> ${query} - Result ${i}</h3>
+          <div class="url">https://searchknow.app/${appId}/${i}</div>
+          <div class="snippet">Found in ${app.label}: "${query}" - This is a demo result showing how search works in Search---know-™</div>
+          <div class="badge">${app.label}</div>
+        </div>
+      `;
+    }
+    resultsDiv.innerHTML = html;
   } catch (e) {
     resultsDiv.innerHTML = `<div class="info-message" style="color:#c0392b;">⚠️ Error: ${e.message}</div>`;
   } finally {
@@ -542,9 +488,6 @@ async function performSearch(query, appId) {
   }
 }
 
-// ============================================================
-// 5. EVENT LISTENERS
-// ============================================================
 searchBtn.addEventListener('click', () => {
   const q = queryInput.value.trim();
   if (q) performSearch(q, currentAppId);
@@ -558,13 +501,12 @@ queryInput.addEventListener('keydown', (e) => {
 });
 
 // ============================================================
-// 6. INIT
+// 7. INIT
 // ============================================================
-renderAppButtons();
-
+renderApps();
 console.log('🔍 Search---know-™ loaded.');
-console.log('📌 Active Apps:', APP_CONFIG.filter(a => a.active).map(a => a.label).join(', '));
+console.log('📌 Apps:', appList.map(a => a.label).join(', '));
+console.log('💡 Click "Add App" to add any third-party app (Yahoo Weather, etc.)');
 </script>
-
 </body>
 </html>
