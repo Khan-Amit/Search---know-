@@ -1,23 +1,121 @@
-### AL ###
-#Template for AL projects for Dynamics 365 Business Central
-#launch.json folder
+# ============================================================
+# OS & Editor Files
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+
+# ============================================================
+# IDE / Editor
+# ============================================================
 .vscode/
-#Cache folder
-.alcache/
-#Symbols folder
-.alpackages/
-#Snapshots folder
-.snapshots/
-#Testing Output folder
-.output/
-#Extension App-file
-*.app
-#Rapid Application Development File
-rad.json
-#Translation Base-file
-*.g.xlf
-#License-files
-*.bclicense
-*.flf
-#Test results file
-TestResults.xml
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+*.code-workspace
+
+# ============================================================
+# Node / NPM (if you use it)
+# ============================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+pnpm-lock.yaml
+
+# ============================================================
+# Build / Dist
+# ============================================================
+dist/
+build/
+out/
+*.min.js
+*.min.css
+*.bundle.js
+*.chunk.js
+*.map
+
+# ============================================================
+# Environment & Secrets
+# ============================================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+*.p12
+*.p8
+
+# ============================================================
+# Logs & Temp
+# ============================================================
+logs/
+*.log
+temp/
+tmp/
+.cache/
+.parcel-cache/
+
+# ============================================================
+# Test Coverage
+# ============================================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ============================================================
+# Misc
+# ============================================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.gz
+*.tgz
+
+# ============================================================
+# Browser / Local Storage (if you use localStorage)
+# ============================================================
+*.localstorage
+*.sqlite
+*.db
+*.db-journal
+
+# ============================================================
+# Your MY-AI specific
+# ============================================================
+# Visitor log data (if you export it)
+visitor_log.json
+visitor_logs/
+backup/
+
+# API keys (if stored in JS files with real keys)
+# !!! NEVER commit files with real API keys !!!
+*secret*.js
+*api-key*.js
+*credentials*.js
+config.js
+
+# ============================================================
+# Docker / Container
+# ============================================================
+docker-compose.override.yml
+.dockerignore
+Dockerfile.dev
+
+# ============================================================
+# GitHub specific
+# ============================================================
+.github/
+.gh-pages/
