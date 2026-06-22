@@ -1,2 +1,16 @@
-# Search---know-
+# Search---know-™
 Search engine 
+A part of Mardukh system ® 
+is a conceptual search engine 
+conceived and designed by 
+
+Seliim Ahmed 
+email amit.khanna.1082@gmail.com 
+all rights reserved 
+the intellectual property is registered in the name of 
+Seliim Ahmed 
+email:amit.khanna.1082@gmail.com
+wothout prior written permission from 
+Seliim Ahmed 
+is largely persueble 
+
