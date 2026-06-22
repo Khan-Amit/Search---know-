@@ -1,102 +1,30 @@
-# ========================================
-# 🛡️ MY-AI .gitignore — Hardened Security
-# ========================================
-
-# === OS junk ===
+# OS junk
 .DS_Store
 Thumbs.db
-*.tmp
-*.bak
-*.log
-*.cache
+Desktop.ini
+*.icloud
 
-# === IDE / Editor files ===
+# Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-*.user
-*.userprefs
 
-# === Compiled binaries ===
-*.exe
-*.dll
-*.so
-*.dylib
-*.o
-*.obj
-*.out
-*.app
+# Logs
+*.log
+logs/
 
-# === Build directories ===
-build/
-bin/
-obj/
-dist/
-node_modules/
-
-# === Environment & Secrets ===
+# Secrets
 .env
-.env.local
-.env.*.local
 *.key
 *.pem
-*.crt
-*.p12
-secrets/
-config.local.js
 
-# === Logs & Temporary Data ===
-logs/
-*.log
-*.cache
-*.pid
-*.seed
-*.pid.lock
+# Build
+dist/
+build/
+node_modules/
 
-# === Python / Backend (if added later) ===
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
-env/
-.venv/
-
-# === C++ / Rust compiled (if you add later) ===
-target/
-debug/
-release/
-*.pdb
-
-# === Database files ===
-*.db
-*.sqlite
-*.sqlite3
-*.db-journal
-
-# === Cloud / Deployment ===
-.terraform/
-*.tfstate
-*.tfstate.*
-.aws/
-.gcloud/
-
-# === Personal & Local Testing ===
-test/
-temp/
-scratch/
-playground/
-
-# === Backup & Archive ===
-*.zip
-*.tar.gz
-*.rar
-*.7z
-*.bak
-*.old
-
-# === GitHub specific ===
-*.sublime-project
-*.sublime-workspace
-.vagrant/
+# ============================================================
+# IMPORTANT: DO NOT ignore apps.json - it's your data!
+# apps.json should be tracked and committed.
+# ============================================================
