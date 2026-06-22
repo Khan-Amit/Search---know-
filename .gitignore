@@ -1,18 +1,14 @@
-# ============================================================
-# OS & Editor Files
-# ============================================================
+# OS junk files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
-desktop.ini
-*.swp
-*.swo
-*~
-*.tmp
-*.temp
+Desktop.ini
 
-# ============================================================
-# IDE / Editor
-# ============================================================
+# Editor files
 .vscode/
 .idea/
 *.iml
@@ -20,10 +16,11 @@ desktop.ini
 .classpath
 .settings/
 *.code-workspace
+*.swp
+*.swo
+*~
 
-# ============================================================
-# Node / NPM (if you use it)
-# ============================================================
+# Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -33,9 +30,7 @@ yarn.lock
 .pnpm-debug.log*
 pnpm-lock.yaml
 
-# ============================================================
-# Build / Dist
-# ============================================================
+# Build output
 dist/
 build/
 out/
@@ -45,9 +40,7 @@ out/
 *.chunk.js
 *.map
 
-# ============================================================
-# Environment & Secrets
-# ============================================================
+# Environment & secrets
 .env
 .env.local
 .env.*.local
@@ -57,9 +50,7 @@ out/
 *.p12
 *.p8
 
-# ============================================================
-# Logs & Temp
-# ============================================================
+# Logs & temp
 logs/
 *.log
 temp/
@@ -67,16 +58,12 @@ tmp/
 .cache/
 .parcel-cache/
 
-# ============================================================
-# Test Coverage
-# ============================================================
+# Test coverage
 coverage/
 .nyc_output/
 *.lcov
 
-# ============================================================
-# Misc
-# ============================================================
+# Archive files
 *.zip
 *.tar.gz
 *.rar
@@ -84,38 +71,48 @@ coverage/
 *.gz
 *.tgz
 
-# ============================================================
-# Browser / Local Storage (if you use localStorage)
-# ============================================================
+# Database files
 *.localstorage
 *.sqlite
 *.db
 *.db-journal
 
-# ============================================================
-# Your MY-AI specific
-# ============================================================
-# Visitor log data (if you export it)
+# MY-AI specific
 visitor_log.json
 visitor_logs/
 backup/
-
-# API keys (if stored in JS files with real keys)
-# !!! NEVER commit files with real API keys !!!
+config.js
 *secret*.js
 *api-key*.js
 *credentials*.js
-config.js
 
-# ============================================================
-# Docker / Container
-# ============================================================
+# Docker
 docker-compose.override.yml
 .dockerignore
 Dockerfile.dev
 
-# ============================================================
-# GitHub specific
-# ============================================================
+# GitHub
 .github/
 .gh-pages/
+
+# Python (if used)
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# PHP (if used)
+*.log
+*.sql
+*.sql.gz
+
+# Ruby (if used)
+*.gem
+.bundle/
+Gemfile.lock
+
+# MacOS metadata
+*.icloud
