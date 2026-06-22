@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Apps • Search---know-™</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .apps-hero {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+        .apps-hero h2 {
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: #1a1a1a;
+        }
+        .apps-hero p {
+            color: #888;
+            font-size: .85rem;
+            margin-top: 4px;
+        }
+        .apps-grid-full {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .app-card-full {
+            background: #f7f8fa;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+        .app-card-full:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+            border-color: #ccc;
+        }
+        .app-card-full .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .app-card-full .name {
+            font-size: .85rem;
+            font-weight: 500;
+        }
+        .app-card-full .type {
+            font-size: .6rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-top: 4px;
+            display: block;
+        }
+        .app-card-full .badge-app {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: .5rem;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+        .app-card-full.add-app-card {
+            background: transparent;
+            border: 2px dashed #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            color: #999;
+        }
+        .app-card-full.add-app-card:hover {
+            background: #f7f8fa;
+            border-color: #aaa;
+            color: #666;
+        }
+        .app-categories {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 12px 0 20px;
+        }
+        .app-categories button {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: .7rem;
+            color: #666;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .app-categories button.active {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+        .app-categories button:hover {
+            background: #ddd;
+        }
+        .admin-panel-apps {
+            background: #f7f8fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+        .admin-panel-apps h3 {
+            font-size: .9rem;
+            font-weight: 400;
+            color: #444;
+            margin-bottom: 12px;
+        }
+        .admin-panel-apps .add-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .admin-panel-apps .add-form input {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: .8rem;
+            flex: 1;
+            min-width: 120px;
+            color: #333;
+            outline: none;
+        }
+        .admin-panel-apps .add-form input:focus {
+            border-color: #1a1a1a;
+        }
+        .admin-panel-apps .add-form button {
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-size: .75rem;
+            cursor: pointer;
+        }
+        .admin-panel-apps .add-form button:hover {
+            background: #333;
+        }
+        .admin-panel-apps .app-list-admin {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+        }
+        .admin-panel-apps .app-list-admin .admin-item {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-panel-apps .app-list-admin .admin-item .info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .admin-panel-apps .app-list-admin .admin-item .info .icon {
+            font-size: 1rem;
+        }
+        .admin-panel-apps .app-list-admin .admin-item .info .name {
+            font-size: .75rem;
+            font-weight: 500;
+        }
+        .admin-panel-apps .app-list-admin .admin-item .remove-btn {
+            background: #ff4444;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: .6rem;
+            cursor: pointer;
+        }
+        .admin-panel-apps .admin-status {
+            color: #27ae60;
+            font-size: .75rem;
+            margin-top: 8px;
+        }
+        @media(max-width:480px) {
+            .apps-grid-full {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .app-card-full {
+                padding: 14px 10px;
+            }
+            .app-card-full .icon {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <div class="brand">
+            <div class="logo">🔍</div>
+            <h1>Search---know- <small>™</small></h1>
+        </div>
+        <div class="header-links">
+            <a href="index.html"><i class="fas fa-search"></i> Search</a>
+            <a href="apps.html" class="active"><i class="fas fa-th"></i> Apps</a>
+            <a href="members.html"><i class="fas fa-users"></i> Members</a>
+        </div>
+    </div>
+
+    <!-- ===== APPS HERO ===== -->
+    <div class="apps-hero">
+        <h2>📱 All Apps</h2>
+        <p>Your collection of apps and tools</p>
+    </div>
+
+    <!-- ===== CATEGORIES ===== -->
+    <div class="app-categories">
+        <button class="active" data-category="all">All</button>
+        <button data-category="search">🔍 Search</button>
+        <button data-category="app">📱 Apps</button>
+        <button data-category="tools">🛠️ Tools</button>
+    </div>
+
+    <!-- ===== APP GRID ===== -->
+    <div class="apps-grid-full" id="appsGrid"></div>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div class="admin-panel-apps">
+        <h3>🛡️ Manage Apps</h3>
+        <div class="add-form">
+            <input type="text" id="adminAppName" placeholder="App name">
+            <input type="text" id="adminAppUrl" placeholder="URL (e.g., https://weather.com)">
+            <input type="text" id="adminAppIcon" placeholder="Icon (e.g., fa-cloud-sun)" value="fa-link">
+            <button id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div class="app-list-admin" id="adminAppList"></div>
+        <div class="admin-status" id="adminStatus"></div>
+    </div>
+
+    <!-- ===== VISITOR COUNTER ===== -->
+    <div class="visitor-counter" id="visitorCounter">
+        <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
+        <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
+        <div class="stat">🌍 <span id="topCountries">Loading...</span></div>
+        <button class="refresh-btn" onclick="refreshStats()">↻</button>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <span>© 2026 Search---know-™ • Mardukh system ®</span>
+        <br>
+        <span class="open-source">Open source • <a href="#" onclick="alert('Improve on GitHub!')">Improve this page</a></span>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+    // ============================================================
+    // APP MANAGEMENT
+    // ============================================================
+    const APPS_KEY = 'searchknow_apps';
+    
+    const DEFAULT_APPS = [
+        { id: 'web', label: 'Web Search', icon: 'fa-globe', url: null, category: 'search' },
+        { id: 'images', label: 'Images', icon: 'fa-image', url: null, category: 'search' },
+        { id: 'news', label: 'News', icon: 'fa-newspaper', url: null, category: 'search' },
+        { id: 'videos', label: 'Videos', icon: 'fa-video', url: null, category: 'search' },
+        { id: 'weather', label: 'Weather', icon: 'fa-cloud-sun', url: 'https://weather.com', category: 'tools' },
+        { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB', category: 'app' },
+        { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/', category: 'app' },
+        { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1', category: 'app' },
+        { id: 'finance', label: 'Finance', icon: 'fa-chart-pie', url: null, category: 'tools' },
+        { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor', url: null, category: 'tools' }
+    ];
+
+    function loadApps() {
+        try {
+            const stored = localStorage.getItem(APPS_KEY);
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            }
+        } catch (e) {}
+        return JSON.parse(JSON.stringify(DEFAULT_APPS));
+    }
+
+    function saveApps(apps) {
+        localStorage.setItem(APPS_KEY, JSON.stringify(apps));
+    }
+
+    let appList = loadApps();
+    let currentCategory = 'all';
+
+    // ============================================================
+    // RENDER APPS
+    // ============================================================
+    const appsGrid = document.getElementById('appsGrid');
+
+    function renderApps() {
+        const filtered = currentCategory === 'all' 
+            ? appList 
+            : appList.filter(app => app.category === currentCategory);
+
+        appsGrid.innerHTML = '';
+        
+        if (filtered.length === 0) {
+            appsGrid.innerHTML = '<div class="info-message" style="padding:20px 0;">No apps in this category.</div>';
+            return;
+        }
+
+        filtered.forEach(app => {
+            const div = document.createElement('div');
+            div.className = 'app-card-full';
+            div.onclick = () => {
+                if (app.url) {
+                    window.open(app.url, '_blank');
+                } else {
+                    window.location.href = `index.html?q=${encodeURIComponent(app.label)}`;
+                }
+            };
+            
+            div.innerHTML = `
+                <span class="icon"><i class="fas ${app.icon}"></i></span>
+                <span class="name">${app.label}</span>
+                <span class="type">${app.category || 'app'}</span>
+                ${app.url ? '<span class="badge-app">🌐 App</span>' : '<span class="badge-app">🔍 Search</span>'}
+            `;
+            
+            appsGrid.appendChild(div);
+        });
+
+        // Add App button
+        const addDiv = document.createElement('div');
+        addDiv.className = 'app-card-full add-app-card';
+        addDiv.onclick = () => {
+            document.getElementById('adminAppName').focus();
+            document.querySelector('.admin-panel-apps').scrollIntoView({ behavior: 'smooth' });
+        };
+        addDiv.innerHTML = `
+            <span style="font-size:2rem;">+</span>
+            <span style="font-size:.7rem;color:#999;margin-top:4px;">Add New App</span>
+        `;
+        appsGrid.appendChild(addDiv);
+
+        renderAdminList();
+    }
+
+    // ============================================================
+    // ADMIN LIST
+    // ============================================================
+    function renderAdminList() {
+        const container = document.getElementById('adminAppList');
+        if (!appList || appList.length === 0) {
+            container.innerHTML = '<div style="color:#999;font-size:.8rem;padding:8px 0;">No apps added yet.</div>';
+            return;
+        }
+        container.innerHTML = appList.map(app => `
+            <div class="admin-item">
+                <div class="info">
+                    <span class="icon"><i class="fas ${app.icon}"></i></span>
+                    <span class="name">${app.label}</span>
+                </div>
+                <button class="remove-btn" onclick="removeApp('${app.id}')">×</button>
+            </div>
+        `).join('');
+    }
+
+    function removeApp(id) {
+        if (confirm('Remove this app?')) {
+            appList = appList.filter(a => a.id !== id);
+            saveApps(appList);
+            renderApps();
+            document.getElementById('adminStatus').textContent = '✅ App removed!';
+            setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
+        }
+    }
+
+    // ============================================================
+    // ADD APP
+    // ============================================================
+    document.getElementById('adminAddBtn').addEventListener('click', () => {
+        const name = document.getElementById('adminAppName').value.trim();
+        const url = document.getElementById('adminAppUrl').value.trim();
+        const icon = document.getElementById('adminAppIcon').value.trim() || 'fa-link';
+        
+        if (!name) {
+            document.getElementById('adminStatus').textContent = '⚠️ Please enter an app name.';
+            return;
+        }
+        
+        const newApp = {
+            id: 'app_' + Date.now(),
+            label: name,
+            icon: icon,
+            url: url || null,
+            category: url ? 'app' : 'search'
+        };
+        
+        appList.push(newApp);
+        saveApps(appList);
+        renderApps();
+        
+        document.getElementById('adminAppName').value = '';
+        document.getElementById('adminAppUrl').value = '';
+        document.getElementById('adminAppIcon').value = 'fa-link';
+        document.getElementById('adminStatus').textContent = '✅ "' + name + '" added!';
+        setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
+    });
+
+    // ============================================================
+    // CATEGORY FILTER
+    // ============================================================
+    document.querySelectorAll('.app-categories button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.app-categories button').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentCategory = this.dataset.category;
+            renderApps();
+        });
+    });
+
+    // ============================================================
+    // ENTER KEY FOR ADMIN FORM
+    // ============================================================
+    document.getElementById('adminAppName').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('adminAddBtn').click();
+    });
+    document.getElementById('adminAppUrl').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('adminAddBtn').click();
+    });
+
+    // ============================================================
+    // CHECK URL PARAMS FOR SEARCH
+    // ============================================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const q = urlParams.get('q');
+    if (q) {
+        window.location.href = `index.html?q=${encodeURIComponent(q)}`;
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    renderApps();
+    console.log('📱 Apps page loaded. Apps:', appList.length);
+</script>
+</body>
+</html>
