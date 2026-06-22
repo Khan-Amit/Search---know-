@@ -29,7 +29,7 @@
         .app-section .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
         .app-section .section-header h2{font-size:1rem;font-weight:400;color:#666;letter-spacing:1px}
         .app-section .section-header .add-btn{background:#1a1a1a;border:none;border-radius:40px;padding:8px 20px;font-size:.75rem;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
-        .app-section .section-header .add-btn:hover{background:#333;transform:scale(1.02)}
+        .app-section .section-header .add-btn:hover{background:#333}
         .app-section .section-header .admin-btn{background:#f0f0f0;border:1px solid #ddd;border-radius:40px;padding:6px 16px;font-size:.7rem;color:#666;cursor:pointer;transition:all .2s}
         .app-section .section-header .admin-btn:hover{background:#e0e0e0}
         
@@ -78,7 +78,6 @@
         .footer a:hover{color:#1a1a1a}
         .footer .open-source{font-size:.6rem;color:#bbb;margin-top:2px}
         
-        /* Admin Panel */
         .admin-panel{display:none;background:#f7f8fa;border-radius:16px;padding:20px;margin-top:16px;border:1px solid #eee}
         .admin-panel.visible{display:block}
         .admin-panel h3{font-size:.9rem;font-weight:400;color:#444;margin-bottom:10px}
@@ -105,7 +104,7 @@
 <body>
 <div class="container">
     
-    <!-- BRAND -->
+    <!-- ===== BRAND ===== -->
     <div class="brand">
         <div class="logo">🔍</div>
         <h1>Search---know- <small>™</small></h1>
@@ -113,18 +112,18 @@
         <div class="mardukh">All rights reserved • Open source</div>
     </div>
     
-    <!-- SEARCH -->
+    <!-- ===== SEARCH ===== -->
     <div class="search-area">
         <input type="text" id="queryInput" placeholder="Search anything..." autofocus>
         <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
     </div>
     
-    <!-- APPS -->
+    <!-- ===== APPS ===== -->
     <div class="app-section">
         <div class="section-header">
             <h2><i class="fas fa-th"></i> My Apps</h2>
             <div>
-                <button class="admin-btn" id="adminToggleBtn"><i class="fas fa-cog"></i> Manage Apps</button>
+                <button class="admin-btn" id="adminToggleBtn"><i class="fas fa-cog"></i> Manage</button>
                 <button class="add-btn" id="addAppBtn"><i class="fas fa-plus"></i> Add App</button>
             </div>
         </div>
@@ -133,12 +132,12 @@
         </div>
     </div>
     
-    <!-- ADMIN PANEL -->
+    <!-- ===== ADMIN PANEL ===== -->
     <div id="adminPanel" class="admin-panel">
         <h3>🛡️ Manage Apps</h3>
         <div class="add-app-form">
-            <input type="text" id="adminAppName" placeholder="App name (e.g., Yahoo Weather)">
-            <input type="text" id="adminAppUrl" placeholder="App URL (e.g., https://weather.com)">
+            <input type="text" id="adminAppName" placeholder="App name">
+            <input type="text" id="adminAppUrl" placeholder="URL (e.g., https://weather.com)">
             <input type="text" id="adminAppIcon" placeholder="Icon (e.g., fa-cloud-sun)" value="fa-link">
             <button id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
         </div>
@@ -146,7 +145,7 @@
         <div class="admin-status" id="adminStatus"></div>
     </div>
     
-    <!-- VISITOR COUNTER -->
+    <!-- ===== VISITOR COUNTER ===== -->
     <div class="visitor-counter" id="visitorCounter">
         <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
         <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
@@ -154,11 +153,11 @@
         <button class="refresh-btn" onclick="refreshStats()">↻</button>
     </div>
     
-    <!-- RESULTS -->
+    <!-- ===== RESULTS ===== -->
     <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:6px;font-size:.8rem;">Searching...</p></div>
     <div id="results"><div class="info-message">🔍 Type something and press Search</div></div>
     
-    <!-- VISITOR LOG -->
+    <!-- ===== VISITOR LOG ===== -->
     <div class="visitor-log" id="visitorLog">
         <h3>🕵️ Recent Visitors</h3>
         <table>
@@ -167,7 +166,7 @@
         </table>
     </div>
     
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
     <div class="footer">
         <span>© 2026 Search---know-™ • Mardukh system ®</span>
         <br>
@@ -179,38 +178,61 @@
 
 <script>
 // ============================================================
-// 1. APP MANAGEMENT (Backend via JSON)
+// 1. LOAD APPS FROM apps.json (Backend)
 // ============================================================
-const APPS_KEY = 'searchknow_apps';
+const APPS_STORAGE_KEY = 'searchknow_apps_cache';
+let appList = [];
 
-// Default apps
-const DEFAULT_APPS = [
-    { id: 'web', label: 'Web', icon: 'fa-globe', url: null },
-    { id: 'images', label: 'Images', icon: 'fa-image', url: null },
-    { id: 'movies', label: 'Movies', icon: 'fa-film', url: null },
-    { id: 'finance', label: 'Finance', icon: 'fa-chart-pie', url: null },
-    { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor', url: null },
-    { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
-    { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/' },
-    { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1' }
-];
-
-function loadApps() {
+async function loadAppsFromBackend() {
     try {
-        const stored = localStorage.getItem(APPS_KEY);
-        if (stored) {
-            const parsed = JSON.parse(stored);
-            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        const response = await fetch('apps.json');
+        if (!response.ok) throw new Error('Failed to load apps.json');
+        const data = await response.json();
+        appList = data;
+        // Cache in localStorage
+        localStorage.setItem(APPS_STORAGE_KEY, JSON.stringify(appList));
+        renderApps();
+        renderAdminList();
+        return appList;
+    } catch (error) {
+        console.warn('Could not load apps.json, using cache or defaults');
+        // Try loading from cache
+        const cached = localStorage.getItem(APPS_STORAGE_KEY);
+        if (cached) {
+            try {
+                appList = JSON.parse(cached);
+                renderApps();
+                renderAdminList();
+                return appList;
+            } catch (e) {}
         }
-    } catch (e) {}
-    return JSON.parse(JSON.stringify(DEFAULT_APPS));
+        // Fallback defaults
+        appList = [
+            { id: 'web', label: 'Web', icon: 'fa-globe', url: null },
+            { id: 'images', label: 'Images', icon: 'fa-image', url: null },
+            { id: 'movies', label: 'Movies', icon: 'fa-film', url: null },
+            { id: 'finance', label: 'Finance', icon: 'fa-chart-pie', url: null },
+            { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor', url: null },
+            { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
+            { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/' },
+            { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1' }
+        ];
+        localStorage.setItem(APPS_STORAGE_KEY, JSON.stringify(appList));
+        renderApps();
+        renderAdminList();
+        return appList;
+    }
 }
 
-function saveApps(apps) {
-    localStorage.setItem(APPS_KEY, JSON.stringify(apps));
+function saveAppsToBackend(apps) {
+    // Save to localStorage cache
+    localStorage.setItem(APPS_STORAGE_KEY, JSON.stringify(apps));
+    // In a real backend, you'd POST to a server here
+    // For GitHub Pages, we use localStorage as the "backend"
+    appList = apps;
+    renderApps();
+    renderAdminList();
 }
-
-let appList = loadApps();
 
 // ============================================================
 // 2. RENDER APPS
@@ -220,7 +242,7 @@ const appGrid = document.getElementById('appGrid');
 function renderApps() {
     appGrid.innerHTML = '';
     
-    if (appList.length === 0) {
+    if (!appList || appList.length === 0) {
         appGrid.innerHTML = '<div class="info-message" style="padding:10px 0;">No apps added yet. Click "Add App" to add one.</div>';
         return;
     }
@@ -229,7 +251,7 @@ function renderApps() {
         const div = document.createElement('div');
         div.className = 'app-item';
         
-        // Delete button
+        // Delete button (only visible on hover)
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'app-delete';
         deleteBtn.innerHTML = '×';
@@ -237,10 +259,8 @@ function renderApps() {
         deleteBtn.onclick = (e) => {
             e.stopPropagation();
             if (confirm('Remove "' + app.label + '"?')) {
-                appList = appList.filter(a => a.id !== app.id);
-                saveApps(appList);
-                renderApps();
-                renderAdminList();
+                const newList = appList.filter(a => a.id !== app.id);
+                saveAppsToBackend(newList);
             }
         };
         div.appendChild(deleteBtn);
@@ -296,14 +316,14 @@ const adminPanel = document.getElementById('adminPanel');
 const adminAppList = document.getElementById('adminAppList');
 
 function renderAdminList() {
-    if (appList.length === 0) {
+    if (!appList || appList.length === 0) {
         adminAppList.innerHTML = '<div style="color:#999;font-size:.8rem;padding:8px 0;">No apps added yet.</div>';
         return;
     }
     
-    adminAppList.innerHTML = '<div class="admin-grid">';
+    let html = '<div class="admin-grid">';
     appList.forEach(app => {
-        adminAppList.innerHTML += `
+        html += `
             <div class="admin-app-item">
                 <div class="info">
                     <span class="icon"><i class="fas ${app.icon}"></i></span>
@@ -316,15 +336,14 @@ function renderAdminList() {
             </div>
         `;
     });
-    adminAppList.innerHTML += '</div>';
+    html += '</div>';
+    adminAppList.innerHTML = html;
 }
 
 function removeApp(id) {
     if (confirm('Remove this app?')) {
-        appList = appList.filter(a => a.id !== id);
-        saveApps(appList);
-        renderApps();
-        renderAdminList();
+        const newList = appList.filter(a => a.id !== id);
+        saveAppsToBackend(newList);
         document.getElementById('adminStatus').textContent = '✅ App removed!';
         setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
     }
@@ -357,16 +376,22 @@ document.getElementById('adminAddBtn').addEventListener('click', () => {
         url: url || null
     };
     
-    appList.push(newApp);
-    saveApps(appList);
-    renderApps();
-    renderAdminList();
+    const newList = [...appList, newApp];
+    saveAppsToBackend(newList);
     
     document.getElementById('adminAppName').value = '';
     document.getElementById('adminAppUrl').value = '';
     document.getElementById('adminAppIcon').value = 'fa-link';
     document.getElementById('adminStatus').textContent = '✅ "' + name + '" added!';
     setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
+});
+
+// Enter key for admin form
+document.getElementById('adminAppName').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('adminAddBtn').click();
+});
+document.getElementById('adminAppUrl').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('adminAddBtn').click();
 });
 
 // Quick add from main page
@@ -496,10 +521,12 @@ document.getElementById('queryInput').addEventListener('keydown', (e) => {
 // ============================================================
 // 6. INIT
 // ============================================================
-renderApps();
+loadAppsFromBackend();
+
 console.log('🔍 Search---know-™ loaded.');
-console.log('📌 Apps:', appList.map(a => a.label).join(', '));
-console.log('💡 Click "Manage Apps" to add/remove apps.');
+console.log('📌 Apps loaded from apps.json');
+console.log('💡 Click "Manage" to add/remove apps.');
+console.log('📁 apps.json is your backend - edit it to add default apps.');
 </script>
 </body>
 </html>
