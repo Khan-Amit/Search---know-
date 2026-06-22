@@ -1,10 +1,12 @@
 [
-  { "id": "web", "label": "Web", "icon": "fa-globe", "url": null },
-  { "id": "images", "label": "Images", "icon": "fa-image", "url": null },
-  { "id": "movies", "label": "Movies", "icon": "fa-film", "url": null },
-  { "id": "finance", "label": "Finance", "icon": "fa-chart-pie", "url": null },
-  { "id": "cosmic", "label": "Cosmic", "icon": "fa-meteor", "url": null },
-  { "id": "enkomos", "label": "ENKOMOS", "icon": "fa-satellite", "url": "https://khan-amit.github.io/ENKOMOS-_WEB" },
-  { "id": "meetingluck", "label": "Meeting Luck", "icon": "fa-crown", "url": "https://khan-amit.github.io/What-Is--seliim/" },
-  { "id": "kongming", "label": "Kongming-V1", "icon": "fa-chess-king", "url": "https://khan-amit.github.io/Kongming-V1" }
+    { "id": "web", "label": "Web Search", "icon": "fa-globe", "url": null, "category": "search" },
+    { "id": "images", "label": "Images", "icon": "fa-image", "url": null, "category": "search" },
+    { "id": "news", "label": "News", "icon": "fa-newspaper", "url": null, "category": "search" },
+    { "id": "videos", "label": "Videos", "icon": "fa-video", "url": null, "category": "search" },
+    { "id": "weather", "label": "Weather", "icon": "fa-cloud-sun", "url": "https://weather.com", "category": "tools" },
+    { "id": "enkomos", "label": "ENKOMOS", "icon": "fa-satellite", "url": "https://khan-amit.github.io/ENKOMOS-_WEB", "category": "app" },
+    { "id": "meetingluck", "label": "Meeting Luck", "icon": "fa-crown", "url": "https://khan-amit.github.io/What-Is--seliim/", "category": "app" },
+    { "id": "kongming", "label": "Kongming-V1", "icon": "fa-chess-king", "url": "https://khan-amit.github.io/Kongming-V1", "category": "app" },
+    { "id": "finance", "label": "Finance", "icon": "fa-chart-pie", "url": null, "category": "tools" },
+    { "id": "cosmic", "label": "Cosmic", "icon": "fa-meteor", "url": null, "category": "tools" }
 ]
