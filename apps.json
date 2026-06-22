@@ -1,0 +1,50 @@
+[
+  {
+    "id": "web",
+    "label": "Web",
+    "icon": "fa-globe",
+    "url": null
+  },
+  {
+    "id": "images",
+    "label": "Images",
+    "icon": "fa-image",
+    "url": null
+  },
+  {
+    "id": "movies",
+    "label": "Movies",
+    "icon": "fa-film",
+    "url": null
+  },
+  {
+    "id": "finance",
+    "label": "Finance",
+    "icon": "fa-chart-pie",
+    "url": null
+  },
+  {
+    "id": "cosmic",
+    "label": "Cosmic",
+    "icon": "fa-meteor",
+    "url": null
+  },
+  {
+    "id": "enkomos",
+    "label": "ENKOMOS",
+    "icon": "fa-satellite",
+    "url": "https://khan-amit.github.io/ENKOMOS-_WEB"
+  },
+  {
+    "id": "meetingluck",
+    "label": "Meeting Luck",
+    "icon": "fa-crown",
+    "url": "https://khan-amit.github.io/What-Is--seliim/"
+  },
+  {
+    "id": "kongming",
+    "label": "Kongming-V1",
+    "icon": "fa-chess-king",
+    "url": "https://khan-amit.github.io/Kongming-V1"
+  }
+]
