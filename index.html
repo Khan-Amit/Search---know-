@@ -6,247 +6,61 @@
     <title>Search---know-™</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .search-tabs {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin: 12px 0 20px;
-            flex-wrap: wrap;
-        }
-        .search-tabs button {
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 40px;
-            padding: 6px 16px;
-            font-size: .75rem;
-            color: #666;
-            cursor: pointer;
-            transition: all .2s;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .search-tabs button.active {
-            background: #1a1a1a;
-            color: #fff;
-            border-color: #1a1a1a;
-        }
-        .search-tabs button:hover {
-            background: #ddd;
-        }
-        .search-tabs button i {
-            font-size: .8rem;
-        }
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 8px 0 16px;
-        }
-        .quick-actions a {
-            background: #f7f8fa;
-            border: 1px solid #eee;
-            border-radius: 40px;
-            padding: 6px 16px;
-            font-size: .7rem;
-            color: #555;
-            text-decoration: none;
-            transition: all .2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .quick-actions a:hover {
-            background: #e0e0e0;
-            border-color: #ccc;
-        }
-        .weather-widget {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #fff;
-            border-radius: 16px;
-            padding: 16px 20px;
-            margin: 12px 0 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .weather-widget .temp {
-            font-size: 2rem;
-            font-weight: 300;
-        }
-        .weather-widget .location {
-            font-size: .9rem;
-            opacity: .7;
-        }
-        .weather-widget .condition {
-            font-size: .9rem;
-        }
-        .weather-widget .details {
-            display: flex;
-            gap: 16px;
-            font-size: .75rem;
-            opacity: .8;
-        }
-        .image-results {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 12px;
-        }
-        .image-results img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            transition: all .2s;
-            cursor: pointer;
-        }
-        .image-results img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-        .news-results .news-card {
-            background: #f7f8fa;
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 8px;
-            border: 1px solid #eee;
-            cursor: pointer;
-            transition: all .2s;
-        }
-        .news-results .news-card:hover {
-            background: #f0f0f0;
-        }
-        .news-results .news-card .title {
-            font-weight: 600;
-            font-size: .95rem;
-            color: #1a1a1a;
-        }
-        .news-results .news-card .source {
-            font-size: .7rem;
-            color: #888;
-            margin-top: 4px;
-        }
-        .video-results {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .video-results .video-card {
-            background: #f7f8fa;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            transition: all .2s;
-            cursor: pointer;
-        }
-        .video-results .video-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-        .video-results .video-card .thumb {
-            width: 100%;
-            height: 120px;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: #fff;
-            background: #1a1a1a;
-        }
-        .video-results .video-card .info {
-            padding: 10px 12px;
-        }
-        .video-results .video-card .info .title {
-            font-size: .8rem;
-            font-weight: 500;
-            color: #1a1a1a;
-        }
-        .video-results .video-card .info .channel {
-            font-size: .65rem;
-            color: #888;
-            margin-top: 2px;
-        }
-        @media(max-width:480px) {
-            .image-results {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .image-results img {
-                height: 100px;
-            }
-            .video-results {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .weather-widget {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
 <body>
 <div class="container">
 
-    <!-- ===== HEADER ===== -->
-    <div class="header">
+    <!-- ===== TOP DARK BLUE BAND ===== -->
+    <div class="top-band">
         <div class="brand">
-            <div class="logo">🔍</div>
-            <h1>Search---know- <small>™</small></h1>
+            <span class="logo">🔍</span>
+            <span class="name">Search---know- <small>™</small></span>
         </div>
-        <div class="header-links">
-            <a href="index.html" class="active"><i class="fas fa-search"></i> Search</a>
-            <a href="apps.html"><i class="fas fa-th"></i> Apps</a>
-            <a href="members.html"><i class="fas fa-users"></i> Members</a>
-        </div>
+        <div class="eye-icon" onclick="window.location.href='members.html'">👁️</div>
     </div>
 
-    <!-- ===== WEATHER WIDGET ===== -->
-    <div class="weather-widget" id="weatherWidget">
-        <div>
-            <div class="location" id="weatherLocation">Loading location...</div>
-            <div class="temp" id="weatherTemp">--°C</div>
-            <div class="condition" id="weatherCondition">--</div>
+    <!-- ===== SEARCH BLOCK ===== -->
+    <div class="search-block">
+        <div class="search-row">
+            <input type="text" id="queryInput" placeholder="Search..." autofocus>
+            <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
         </div>
-        <div class="details">
-            <span>💧 <span id="weatherHumidity">--</span>%</div>
-            <span>💨 <span id="weatherWind">--</span> km/h</span>
+        <div class="search-icons">
+            <button class="icon-btn active" data-type="web"><i class="fas fa-globe"></i> Web</button>
+            <button class="icon-btn" data-type="images"><i class="fas fa-image"></i> Images</button>
+            <button class="icon-btn" data-type="news"><i class="fas fa-newspaper"></i> News</button>
+            <button class="icon-btn" data-type="videos"><i class="fas fa-video"></i> Videos</button>
+            <button class="icon-btn" data-type="weather"><i class="fas fa-cloud-sun"></i> Weather</button>
         </div>
     </div>
 
-    <!-- ===== SEARCH ===== -->
-    <div class="search-area">
-        <input type="text" id="queryInput" placeholder="Search anything..." autofocus>
-        <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    <!-- ===== WEATHER MINI ===== -->
+    <div class="weather-mini" id="weatherWidget">
+        <div class="left">
+            <span class="temp" id="weatherTemp">--°C</span>
+            <div>
+                <div class="condition" id="weatherCondition">Loading...</div>
+                <div class="location" id="weatherLocation">--</div>
+            </div>
+        </div>
+        <div class="right">
+            <span>💧 <span id="weatherHumidity">--</span>%</span>
+            <span>💨 <span id="weatherWind">--</span></span>
+        </div>
     </div>
 
-    <!-- ===== SEARCH TABS ===== -->
-    <div class="search-tabs">
-        <button class="active" data-type="web"><i class="fas fa-globe"></i> Web</button>
-        <button data-type="images"><i class="fas fa-image"></i> Images</button>
-        <button data-type="news"><i class="fas fa-newspaper"></i> News</button>
-        <button data-type="videos"><i class="fas fa-video"></i> Videos</button>
-    </div>
-
-    <!-- ===== QUICK ACTIONS ===== -->
-    <div class="quick-actions">
-        <a href="#" onclick="searchQuick('weather today')"><i class="fas fa-cloud-sun"></i> Weather</a>
-        <a href="#" onclick="searchQuick('news today')"><i class="fas fa-newspaper"></i> News</a>
-        <a href="#" onclick="searchQuick('stock market')"><i class="fas fa-chart-line"></i> Stocks</a>
-        <a href="#" onclick="searchQuick('sports')"><i class="fas fa-football"></i> Sports</a>
-        <a href="#" onclick="searchQuick('movies')"><i class="fas fa-film"></i> Movies</a>
+    <!-- ===== APP SECTION ===== -->
+    <div class="app-section">
+        <div class="section-header">
+            <h2><i class="fas fa-th"></i> My Apps</h2>
+            <button class="add-btn" id="addAppBtn"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div class="app-grid" id="appGrid"></div>
     </div>
 
     <!-- ===== RESULTS ===== -->
-    <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:6px;font-size:.8rem;">Searching...</p></div>
-    <div id="results"><div class="info-message">🔍 Type something and press Search</div></div>
+    <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:4px;font-size:.7rem;">Searching...</p></div>
+    <div id="results"><div class="info-message">🔍 Type and search</div></div>
 
     <!-- ===== VISITOR COUNTER ===== -->
     <div class="visitor-counter" id="visitorCounter">
@@ -256,20 +70,26 @@
         <button class="refresh-btn" onclick="refreshStats()">↻</button>
     </div>
 
-    <!-- ===== VISITOR LOG ===== -->
-    <div class="visitor-log" id="visitorLog">
-        <h3>🕵️ Recent Visitors</h3>
-        <table>
-            <thead><tr><th>#</th><th>Time</th><th>Country</th><th>IP</th></tr></thead>
-            <tbody id="logBody"><tr><td colspan="4" style="color:#bbb;text-align:center;padding:8px;">No visits yet</td></tr></tbody>
-        </table>
-    </div>
-
     <!-- ===== FOOTER ===== -->
     <div class="footer">
         <span>© 2026 Search---know-™ • Mardukh system ®</span>
-        <br>
         <span class="open-source">Open source • <a href="#" onclick="alert('Improve on GitHub!')">Improve this page</a></span>
+    </div>
+
+    <!-- ===== ADMIN TOGGLE ===== -->
+    <button class="admin-toggle" onclick="toggleAdmin()">⚙️</button>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div id="adminPanel" class="admin-panel">
+        <h3>🛡️ Manage Apps</h3>
+        <div class="add-app-form">
+            <input type="text" id="adminAppName" placeholder="App name">
+            <input type="text" id="adminAppUrl" placeholder="URL">
+            <input type="text" id="adminAppIcon" placeholder="Icon" value="fa-link">
+            <button id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div id="adminAppList"></div>
+        <div class="admin-status" id="adminStatus"></div>
     </div>
 
 </div>
@@ -277,29 +97,174 @@
 <script src="script.js"></script>
 <script>
     // ============================================================
+    // APP MANAGEMENT
+    // ============================================================
+    const APPS_KEY = 'searchknow_apps';
+    
+    const DEFAULT_APPS = [
+        { id: 'web', label: 'Web', icon: 'fa-globe', url: null },
+        { id: 'images', label: 'Images', icon: 'fa-image', url: null },
+        { id: 'news', label: 'News', icon: 'fa-newspaper', url: null },
+        { id: 'videos', label: 'Videos', icon: 'fa-video', url: null },
+        { id: 'weather', label: 'Weather', icon: 'fa-cloud-sun', url: null },
+        { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
+        { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/' },
+        { id: 'kongming', label: 'Kongming', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1' }
+    ];
+
+    function loadApps() {
+        try {
+            const stored = localStorage.getItem(APPS_KEY);
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            }
+        } catch (e) {}
+        return JSON.parse(JSON.stringify(DEFAULT_APPS));
+    }
+
+    function saveApps(apps) {
+        localStorage.setItem(APPS_KEY, JSON.stringify(apps));
+    }
+
+    let appList = loadApps();
+
+    // ============================================================
+    // RENDER APPS
+    // ============================================================
+    const appGrid = document.getElementById('appGrid');
+
+    function renderApps() {
+        appGrid.innerHTML = '';
+        if (!appList || appList.length === 0) {
+            appGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#999;font-size:.7rem;padding:10px 0;">No apps. Tap + to add.</div>';
+            return;
+        }
+        appList.forEach(app => {
+            const div = document.createElement('div');
+            div.className = 'app-item';
+            const icon = document.createElement('span');
+            icon.className = 'app-icon';
+            icon.innerHTML = `<i class="fas ${app.icon}"></i>`;
+            div.appendChild(icon);
+            const label = document.createElement('span');
+            label.className = 'app-label';
+            label.textContent = app.label;
+            div.appendChild(label);
+            if (app.url) {
+                const badge = document.createElement('span');
+                badge.className = 'app-badge';
+                badge.textContent = 'APP';
+                div.appendChild(badge);
+            }
+            div.onclick = () => {
+                if (app.url) {
+                    window.open(app.url, '_blank');
+                } else {
+                    document.getElementById('queryInput').value = app.label;
+                    document.getElementById('searchBtn').click();
+                }
+            };
+            appGrid.appendChild(div);
+        });
+        
+        // Add button
+        const addDiv = document.createElement('div');
+        addDiv.className = 'app-item add-new';
+        addDiv.innerHTML = `<span style="font-size:1.6rem;">+</span><span style="font-size:.45rem;color:#999;margin-top:2px;">Add</span>`;
+        addDiv.onclick = () => { document.getElementById('addAppBtn').click(); };
+        appGrid.appendChild(addDiv);
+    }
+
+    // ============================================================
+    // ADMIN PANEL
+    // ============================================================
+    const adminPanel = document.getElementById('adminPanel');
+    const adminAppList = document.getElementById('adminAppList');
+
+    function renderAdminList() {
+        if (!appList || appList.length === 0) {
+            adminAppList.innerHTML = '<div style="color:#999;font-size:.7rem;padding:6px 0;">No apps.</div>';
+            return;
+        }
+        adminAppList.innerHTML = appList.map(app => `
+            <div class="admin-app-item">
+                <div class="info">
+                    <span class="icon"><i class="fas ${app.icon}"></i></span>
+                    <span class="name">${app.label}</span>
+                </div>
+                <button class="remove-btn" onclick="removeApp('${app.id}')">×</button>
+            </div>
+        `).join('');
+    }
+
+    function removeApp(id) {
+        if (confirm('Remove this app?')) {
+            appList = appList.filter(a => a.id !== id);
+            saveApps(appList);
+            renderApps();
+            renderAdminList();
+            document.getElementById('adminStatus').textContent = '✅ Removed!';
+            setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
+        }
+    }
+
+    function toggleAdmin() {
+        adminPanel.classList.toggle('visible');
+        if (adminPanel.classList.contains('visible')) renderAdminList();
+    }
+
+    document.getElementById('adminToggleBtn')?.addEventListener('click', toggleAdmin);
+
+    document.getElementById('adminAddBtn').addEventListener('click', () => {
+        const name = document.getElementById('adminAppName').value.trim();
+        const url = document.getElementById('adminAppUrl').value.trim();
+        const icon = document.getElementById('adminAppIcon').value.trim() || 'fa-link';
+        if (!name) {
+            document.getElementById('adminStatus').textContent = '⚠️ Enter a name.';
+            return;
+        }
+        const newApp = { id: 'app_' + Date.now(), label: name, icon: icon, url: url || null };
+        appList.push(newApp);
+        saveApps(appList);
+        renderApps();
+        renderAdminList();
+        document.getElementById('adminAppName').value = '';
+        document.getElementById('adminAppUrl').value = '';
+        document.getElementById('adminAppIcon').value = 'fa-link';
+        document.getElementById('adminStatus').textContent = '✅ "' + name + '" added!';
+        setTimeout(() => document.getElementById('adminStatus').textContent = '', 2000);
+    });
+
+    document.getElementById('addAppBtn').addEventListener('click', () => {
+        adminPanel.classList.add('visible');
+        renderAdminList();
+        document.getElementById('adminAppName').focus();
+    });
+
+    // ============================================================
     // SEARCH TABS
     // ============================================================
-    let currentSearchType = 'web';
+    let currentType = 'web';
 
-    document.querySelectorAll('.search-tabs button').forEach(btn => {
+    document.querySelectorAll('.search-icons .icon-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            document.querySelectorAll('.search-tabs button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.search-icons .icon-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            currentSearchType = this.dataset.type;
+            currentType = this.dataset.type;
             const q = document.getElementById('queryInput').value.trim();
-            if (q) performSearch(q, currentSearchType);
+            if (q) performSearch(q, currentType);
         });
     });
 
     // ============================================================
-    // SEARCH FUNCTION
+    // SEARCH FUNCTIONS
     // ============================================================
     async function performSearch(query, type) {
         if (!query) {
-            document.getElementById('results').innerHTML = '<div class="info-message">🔍 Type something to search</div>';
+            document.getElementById('results').innerHTML = '<div class="info-message">🔍 Type something</div>';
             return;
         }
-
         const loader = document.getElementById('loader');
         const resultsDiv = document.getElementById('results');
         loader.style.display = 'block';
@@ -307,132 +272,85 @@
 
         try {
             let html = '';
-            
             switch(type) {
-                case 'web':
-                    html = await webSearch(query);
-                    break;
-                case 'images':
-                    html = await imageSearch(query);
-                    break;
-                case 'news':
-                    html = await newsSearch(query);
-                    break;
-                case 'videos':
-                    html = await videoSearch(query);
-                    break;
-                default:
-                    html = await webSearch(query);
+                case 'web': html = await webSearch(query); break;
+                case 'images': html = await imageSearch(query); break;
+                case 'news': html = await newsSearch(query); break;
+                case 'videos': html = await videoSearch(query); break;
+                case 'weather': html = await weatherSearch(query); break;
+                default: html = await webSearch(query);
             }
-            
-            resultsDiv.innerHTML = html || '<div class="info-message">No results found.</div>';
+            resultsDiv.innerHTML = html || '<div class="info-message">No results.</div>';
         } catch (e) {
-            resultsDiv.innerHTML = `<div class="info-message" style="color:#c0392b;">⚠️ Error: ${e.message}</div>`;
+            resultsDiv.innerHTML = `<div class="info-message" style="color:#c0392b;">⚠️ Error</div>`;
         } finally {
             loader.style.display = 'none';
         }
     }
 
-    // ============================================================
-    // WEB SEARCH (Wikipedia)
-    // ============================================================
     async function webSearch(query) {
         try {
             const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
             const res = await fetch(url);
-            if (!res.ok) throw new Error('Wikipedia API failed');
+            if (!res.ok) throw new Error();
             const data = await res.json();
             if (data.title && data.extract) {
                 return `
                     <div class="result-card">
                         <h3><a href="https://en.wikipedia.org/wiki/${encodeURIComponent(data.title.replace(/ /g,'_'))}" target="_blank">${data.title}</a></h3>
-                        <div class="url">https://en.wikipedia.org/wiki/${encodeURIComponent(data.title.replace(/ /g,'_'))}</div>
-                        <div class="snippet">${data.extract.substring(0, 300)}...</div>
-                        <div class="badge">Wikipedia</div>
+                        <div class="url">Wikipedia</div>
+                        <div class="snippet">${data.extract.substring(0, 200)}...</div>
+                        <div class="badge">Web</div>
                     </div>
                 `;
             }
-            return '<div class="info-message">No web results found.</div>';
+            return '<div class="info-message">No web results.</div>';
         } catch (e) {
-            return '<div class="info-message">No web results found.</div>';
+            return '<div class="info-message">No web results.</div>';
         }
     }
 
-    // ============================================================
-    // IMAGE SEARCH (Pexels API)
-    // ============================================================
     async function imageSearch(query) {
-        const PEXELS_KEY = 'YcXaodW8DLZoAreLYwLPYoTZuX2DrSNEhmVg4o0B9N8rLUh8NmIqNbmf';
+        const KEY = 'YcXaodW8DLZoAreLYwLPYoTZuX2DrSNEhmVg4o0B9N8rLUh8NmIqNbmf';
         try {
-            const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=12`;
-            const res = await fetch(url, { headers: { Authorization: PEXELS_KEY } });
-            if (!res.ok) throw new Error('Pexels API error');
+            const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=9`, {
+                headers: { Authorization: KEY }
+            });
+            if (!res.ok) throw new Error();
             const data = await res.json();
-            if (!data.photos || data.photos.length === 0) {
-                return '<div class="info-message">No images found.</div>';
-            }
-            return `<div class="image-results">${data.photos.map(photo => `
-                <img src="${photo.src.medium}" alt="${photo.alt || query}" loading="lazy" onclick="window.open('${photo.url}', '_blank')">
+            if (!data.photos || data.photos.length === 0) return '<div class="info-message">No images.</div>';
+            return `<div class="image-results">${data.photos.map(p => `
+                <img src="${p.src.medium}" alt="${p.alt || query}" onclick="window.open('${p.url}','_blank')">
             `).join('')}</div>`;
         } catch (e) {
             return '<div class="info-message">Image search unavailable.</div>';
         }
     }
 
-    // ============================================================
-    // NEWS SEARCH (NewsAPI)
-    // ============================================================
     async function newsSearch(query) {
-        const NEWS_API_KEY = 'YOUR_NEWS_API_KEY'; // Get free from newsapi.org
-        try {
-            const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&apiKey=${NEWS_API_KEY}&pageSize=8`;
-            const res = await fetch(url);
-            if (!res.ok) throw new Error('News API error');
-            const data = await res.json();
-            if (!data.articles || data.articles.length === 0) {
-                return '<div class="info-message">No news found.</div>';
-            }
-            return `<div class="news-results">${data.articles.map(article => `
-                <div class="news-card" onclick="window.open('${article.url}', '_blank')">
-                    <div class="title">${article.title}</div>
-                    <div class="source">${article.source.name} • ${new Date(article.publishedAt).toLocaleDateString()}</div>
-                </div>
-            `).join('')}</div>`;
-        } catch (e) {
-            // Fallback mock news
-            return `
-                <div class="news-results">
-                    <div class="news-card"><div class="title">${query} - Latest Updates</div><div class="source">News Source • Today</div></div>
-                    <div class="news-card"><div class="title">${query} - Breaking News</div><div class="source">News Source • Today</div></div>
-                    <div class="news-card"><div class="title">${query} - In-Depth Analysis</div><div class="source">News Source • Today</div></div>
-                </div>
-            `;
-        }
+        // Mock news for demo
+        return `
+            <div class="news-results">
+                <div class="news-card"><div class="title">${query} - Latest Updates</div><div class="source">News Source • Today</div></div>
+                <div class="news-card"><div class="title">${query} - Breaking News</div><div class="source">News Source • Today</div></div>
+                <div class="news-card"><div class="title">${query} - In-Depth Analysis</div><div class="source">News Source • Today</div></div>
+            </div>
+        `;
     }
 
-    // ============================================================
-    // VIDEO SEARCH (YouTube via Pexels Videos)
-    // ============================================================
     async function videoSearch(query) {
-        const PEXELS_KEY = 'YcXaodW8DLZoAreLYwLPYoTZuX2DrSNEhmVg4o0B9N8rLUh8NmIqNbmf';
+        const KEY = 'YcXaodW8DLZoAreLYwLPYoTZuX2DrSNEhmVg4o0B9N8rLUh8NmIqNbmf';
         try {
-            const url = `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&per_page=8`;
-            const res = await fetch(url, { headers: { Authorization: PEXELS_KEY } });
-            if (!res.ok) throw new Error('Video API error');
+            const res = await fetch(`https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&per_page=6`, {
+                headers: { Authorization: KEY }
+            });
+            if (!res.ok) throw new Error();
             const data = await res.json();
-            if (!data.videos || data.videos.length === 0) {
-                return '<div class="info-message">No videos found.</div>';
-            }
-            return `<div class="video-results">${data.videos.map(video => `
-                <div class="video-card" onclick="window.open('${video.url}', '_blank')">
-                    <div class="thumb" style="background: #1a1a1a; position:relative;">
-                        <i class="fas fa-play-circle" style="position:absolute;font-size:3rem;opacity:0.8;"></i>
-                        <img src="${video.image}" style="width:100%;height:100%;object-fit:cover;opacity:0.6;" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="title">${video.user?.name || query} - Video</div>
-                        <div class="channel">Pexels Video</div>
-                    </div>
+            if (!data.videos || data.videos.length === 0) return '<div class="info-message">No videos.</div>';
+            return `<div class="video-results">${data.videos.map(v => `
+                <div class="video-card" onclick="window.open('${v.url}','_blank')">
+                    <div class="thumb"><img src="${v.image}" alt=""><i class="fas fa-play-circle"></i></div>
+                    <div class="info"><div class="title">${v.user?.name || 'Video'}</div><div class="channel">Pexels</div></div>
                 </div>
             `).join('')}</div>`;
         } catch (e) {
@@ -440,88 +358,93 @@
         }
     }
 
-    // ============================================================
-    // QUICK SEARCH
-    // ============================================================
-    function searchQuick(query) {
-        document.getElementById('queryInput').value = query;
-        document.getElementById('searchBtn').click();
-    }
-
-    // ============================================================
-    // WEATHER (Open-Meteo API - no key required)
-    // ============================================================
-    async function getWeather() {
+    async function weatherSearch(query) {
         try {
-            // Get location from IP
-            const ipRes = await fetch('https://ipapi.co/json/');
-            const ipData = await ipRes.json();
-            const city = ipData.city || 'Singapore';
-            const country = ipData.country_name || 'Singapore';
-            
-            // Get coordinates (using city name)
-            const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}`);
+            const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}`);
             const geoData = await geoRes.json();
-            
-            let lat = 1.3521, lon = 103.8198; // Default Singapore
-            if (geoData.results && geoData.results.length > 0) {
-                lat = geoData.results[0].latitude;
-                lon = geoData.results[0].longitude;
+            if (!geoData.results || geoData.results.length === 0) return '<div class="info-message">Location not found.</div>';
+            const loc = geoData.results[0];
+            const wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current_weather=true`);
+            const wData = await wRes.json();
+            if (wData.current_weather) {
+                const temp = wData.current_weather.temperature;
+                const code = wData.current_weather.weathercode;
+                const conditions = {0:'☀️ Clear',1:'⛅ Partly',2:'☁️ Cloudy',3:'☁️ Overcast',51:'🌧️ Drizzle',61:'🌧️ Rain',71:'🌨️ Snow',95:'⛈️ Storm'};
+                return `
+                    <div class="result-card">
+                        <h3>${loc.name}, ${loc.country}</h3>
+                        <div style="font-size:1.8rem;font-weight:300;color:#0a1628;">${Math.round(temp)}°C</div>
+                        <div class="snippet">${conditions[code] || '🌤️'}</div>
+                        <div class="badge">Weather</div>
+                    </div>
+                `;
             }
-            
-            // Get weather
-            const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,relative_humidity_2m,windspeed_10m`);
-            const weatherData = await weatherRes.json();
-            
-            if (weatherData.current_weather) {
-                const temp = weatherData.current_weather.temperature;
-                const wind = weatherData.current_weather.windspeed;
-                const weatherCode = weatherData.current_weather.weathercode;
-                
-                // Weather code mapping
-                const conditions = {
-                    0: '☀️ Clear sky',
-                    1: '🌤️ Mainly clear',
-                    2: '⛅ Partly cloudy',
-                    3: '☁️ Overcast',
-                    45: '🌫️ Fog',
-                    48: '🌫️ Depositing rime fog',
-                    51: '🌧️ Light drizzle',
-                    53: '🌧️ Moderate drizzle',
-                    55: '🌧️ Dense drizzle',
-                    61: '🌧️ Slight rain',
-                    63: '🌧️ Moderate rain',
-                    65: '🌧️ Heavy rain',
-                    71: '🌨️ Slight snow',
-                    73: '🌨️ Moderate snow',
-                    75: '🌨️ Heavy snow',
-                    80: '🌧️ Rain showers',
-                    81: '🌧️ Moderate rain showers',
-                    82: '🌧️ Violent rain showers',
-                    95: '⛈️ Thunderstorm',
-                    96: '⛈️ Thunderstorm with hail',
-                    99: '⛈️ Thunderstorm with hail'
-                };
-                
-                const condition = conditions[weatherCode] || '🌤️ Unknown';
-                
-                document.getElementById('weatherLocation').textContent = `${city}, ${country}`;
-                document.getElementById('weatherTemp').textContent = `${Math.round(temp)}°C`;
-                document.getElementById('weatherCondition').textContent = condition;
-                document.getElementById('weatherHumidity').textContent = weatherData.hourly?.relative_humidity_2m?.[0] || '--';
-                document.getElementById('weatherWind').textContent = Math.round(wind);
-            }
+            return '<div class="info-message">Weather unavailable.</div>';
         } catch (e) {
-            console.warn('Weather fetch failed:', e);
+            return '<div class="info-message">Weather unavailable.</div>';
         }
     }
 
     // ============================================================
+    // WEATHER WIDGET
+    // ============================================================
+    async function getWeather() {
+        try {
+            const ipRes = await fetch('https://ipapi.co/json/');
+            const ipData = await ipRes.json();
+            const city = ipData.city || 'Singapore';
+            const country = ipData.country_name || 'Singapore';
+            const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}`);
+            const geoData = await geoRes.json();
+            let lat = 1.3521, lon = 103.8198;
+            if (geoData.results && geoData.results.length > 0) {
+                lat = geoData.results[0].latitude;
+                lon = geoData.results[0].longitude;
+            }
+            const wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+            const wData = await wRes.json();
+            if (wData.current_weather) {
+                document.getElementById('weatherTemp').textContent = Math.round(wData.current_weather.temperature) + '°C';
+                document.getElementById('weatherLocation').textContent = city + ', ' + country;
+                document.getElementById('weatherWind').textContent = Math.round(wData.current_weather.windspeed) + ' km/h';
+                const code = wData.current_weather.weathercode;
+                const conditions = {0:'☀️ Clear',1:'⛅ Partly',2:'☁️ Cloudy',3:'☁️ Overcast',51:'🌧️ Drizzle',61:'🌧️ Rain',71:'🌨️ Snow',95:'⛈️ Storm'};
+                document.getElementById('weatherCondition').textContent = conditions[code] || '🌤️';
+                // Humidity from hourly (approximate)
+                try {
+                    const hRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=relative_humidity_2m&forecast_days=1`);
+                    const hData = await hRes.json();
+                    if (hData.hourly && hData.hourly.relative_humidity_2m) {
+                        document.getElementById('weatherHumidity').textContent = hData.hourly.relative_humidity_2m[0] || '--';
+                    }
+                } catch (e) {}
+            }
+        } catch (e) { console.warn('Weather failed:', e); }
+    }
+
+    // ============================================================
+    // SEARCH EVENT
+    // ============================================================
+    document.getElementById('searchBtn').addEventListener('click', () => {
+        const q = document.getElementById('queryInput').value.trim();
+        if (q) performSearch(q, currentType);
+    });
+
+    document.getElementById('queryInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('searchBtn').click();
+    });
+
+    // ============================================================
+    // VISITOR TRACKING (from script.js)
+    // ============================================================
+    // script.js handles visitor tracking
+
+    // ============================================================
     // INIT
     // ============================================================
+    renderApps();
     getWeather();
-    console.log('🔍 Search---know-™ loaded with APIs');
-    console.log('📌 Features: Web, Images, News, Videos, Weather');
+    console.log('🔍 Search---know-™ mobile ready.');
 </script>
 </body>
 </html>
