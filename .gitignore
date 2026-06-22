@@ -1,4 +1,4 @@
-# OS junk files
+# OS junk
 .DS_Store
 .DS_Store?
 ._*
@@ -7,6 +7,7 @@
 ehthumbs.db
 Thumbs.db
 Desktop.ini
+*.icloud
 
 # Editor files
 .vscode/
@@ -77,11 +78,11 @@ coverage/
 *.db
 *.db-journal
 
-# MY-AI specific
+# MY-AI specific - DO NOT ignore the JSON file!
+# apps.json should be tracked!
 visitor_log.json
 visitor_logs/
 backup/
-config.js
 *secret*.js
 *api-key*.js
 *credentials*.js
@@ -116,3 +117,8 @@ Gemfile.lock
 
 # MacOS metadata
 *.icloud
+
+# ============================================================
+# IMPORTANT: DO NOT ignore apps.json - it's your backend!
+# apps.json is tracked and should be committed.
+# ============================================================
