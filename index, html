@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>MY‑AI™ • Dynamic Index</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#d0d0d0;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px;color:#1a1a1a}
+    .container{max-width:960px;width:100%;background:#e0e0e0;border-radius:24px;padding:30px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.08)}
+    
+    .brand{text-align:center;margin-bottom:30px}
+    .brand .eye-icon{font-size:3.2rem;line-height:1;display:block;margin-bottom:4px}
+    .brand h1{font-size:2.2rem;font-weight:300;letter-spacing:2px;color:#1a1a1a;margin-top:2px}
+    .brand h1 small{font-size:1rem;font-weight:400;color:#555;letter-spacing:1px}
+    .brand .byline{font-size:0.9rem;color:#555;margin-top:4px}
+    .brand .byline a{color:#1a1a1a;text-decoration:none;border-bottom:1px dotted #888}
+    .brand .byline a:hover{color:#000}
+
+    .search-area{background:#f0f0f0;border-radius:60px;padding:8px 8px 8px 20px;display:flex;align-items:center;gap:8px;border:1px solid #ccc;margin-bottom:12px}
+    .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:14px 0;font-size:1.1rem;color:#1a1a1a;outline:none;min-width:0}
+    .search-area input::placeholder{color:#888;font-style:italic}
+    .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:12px 28px;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;transition:all .2s}
+    .search-area button:hover{background:#333;transform:scale(1.01)}
+
+    .mode-toggle{display:flex;gap:6px;margin-bottom:18px;justify-content:center;flex-wrap:wrap}
+    .mode-toggle button{background:#f0f0f0;border:1px solid #ccc;border-radius:40px;padding:8px 16px;font-size:.75rem;font-weight:500;color:#333;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+    .mode-toggle button:hover{background:#ddd;color:#000}
+    .mode-toggle button.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a;box-shadow:0 0 12px rgba(0,0,0,0.08)}
+    .mode-toggle button i{font-size:1rem}
+
+    #results{margin-top:0}
+    .result-card{background:#f5f5f5;border-radius:12px;padding:16px 20px;margin-bottom:12px;border:1px solid #ddd}
+    .result-card h3{font-size:1.1rem;font-weight:600;margin-bottom:4px;color:#1a1a1a}
+    .result-card .url{font-size:.8rem;color:#555;margin-bottom:4px;word-break:break-all}
+    .result-card .snippet{font-size:.95rem;line-height:1.4;color:#1a1a1a}
+    .result-card .badge{display:inline-block;background:#ccc;padding:2px 10px;border-radius:20px;font-size:.7rem;font-weight:500;color:#333;margin-top:6px}
+    .info-message{text-align:center;color:#666;padding:30px 0;font-style:italic}
+    .loader{text-align:center;color:#666;padding:20px 0;display:none}
+    .loader .spinner{display:inline-block;width:24px;height:24px;border:3px solid #ccc;border-top:3px solid #1a1a1a;border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .footer{margin-top:40px;text-align:center;font-size:.75rem;color:#666;border-top:1px solid #ccc;padding-top:20px}
+    .footer a{color:#555;text-decoration:none}
+    .footer a:hover{color:#1a1a1a}
+
+    @media(max-width:480px){.search-area{border-radius:40px;padding:4px 4px 4px 16px}.search-area input[type="text"]{font-size:1rem;padding:12px 0}.search-area button{padding:10px 18px;font-size:.9rem}.brand h1{font-size:1.8rem}.brand .eye-icon{font-size:2.6rem}}
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="brand">
+    <div class="eye-icon">👁️</div>
+    <h1>AI SEARCH ENGINE <small>MY‑AI™</small></h1>
+    <div class="byline">Created by Seliim Ahmed &bull; All rights reserved &bull; <a href="mailto:amit.khanna.1082@gmail.com">amit.khanna.1082@gmail.com</a></div>
+  </div>
+
+  <div class="search-area">
+    <input type="text" id="queryInput" placeholder="Search…" autofocus>
+    <button id="searchBtn">Search</button>
+  </div>
+
+  <div class="mode-toggle" id="modeToggle"></div>
+
+  <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:8px;">Loading…</p></div>
+  <div id="results"><div class="info-message">🔍 Enter a query above</div></div>
+
+  <div class="footer">
+    <span>© 2026 MY‑AI — built with ternary intelligence</span>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// YOUR EXACT JSON STRUCTURE
+// ============================================================
+const APP_INDEX = [
+  { 
+    "label": "Web Engine", 
+    "url": "https://github.io", 
+    "icon": "fas fa-globe", 
+    "color": "text-blue-400",
+    "isDark": true 
+  },
+  { 
+    "label": "What Is Seliim", 
+    "url": "https://khan-amit.github.io/What-Is--seliim/", 
+    "icon": "fas fa-question-circle", 
+    "color": "text-emerald-400" 
+  },
+  { 
+    "label": "Hamnet SA V1", 
+    "url": "https://github.io", 
+    "icon": "fas fa-network-wired", 
+    "color": "text-purple-400" 
+  },
+  { 
+    "label": "Finance Module", 
+    "url": "https://github.io", 
+    "icon": "fas fa-chart-pie", 
+    "color": "text-sky-500" 
+  }
+];
+
+// ============================================================
+// RENDER BUTTONS
+// ============================================================
+const modeToggle = document.getElementById('modeToggle');
+let currentMode = 0;
+
+function renderButtons() {
+  modeToggle.innerHTML = '';
+  APP_INDEX.forEach((item, index) => {
+    const btn = document.createElement('button');
+    btn.className = index === 0 ? 'active' : '';
+    btn.innerHTML = `<i class="${item.icon}"></i> ${item.label}`;
+    btn.dataset.index = index;
+    
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentMode = index;
+      
+      const app = APP_INDEX[index];
+      // If it has a real URL (not placeholder), open in new tab
+      if (app.url && !app.url.includes('github.io') && !app.url.includes('example.com')) {
+        window.open(app.url, '_blank');
+      } else {
+        const q = document.getElementById('queryInput').value.trim();
+        if (q) performSearch(q, index);
+      }
+    });
+    
+    modeToggle.appendChild(btn);
+  });
+}
+
+// ============================================================
+// SEARCH ENGINE
+// ============================================================
+const queryInput = document.getElementById('queryInput');
+const searchBtn = document.getElementById('searchBtn');
+const resultsDiv = document.getElementById('results');
+const loader = document.getElementById('loader');
+
+async function performSearch(query, modeIndex) {
+  if (!query) {
+    resultsDiv.innerHTML = '<div class="info-message">🔍 Enter a query above</div>';
+    return;
+  }
+
+  loader.style.display = 'block';
+  resultsDiv.innerHTML = '';
+
+  try {
+    await new Promise(resolve => setTimeout(resolve, 600));
+    const app = APP_INDEX[modeIndex] || APP_INDEX[0];
+    
+    // Extract icon class without "fas" prefix for display
+    const iconClass = app.icon.replace('fas ', '');
+    
+    resultsDiv.innerHTML = `
+      <div class="result-card">
+        <h3><i class="${app.icon}" style="margin-right:8px;"></i> ${app.label}</h3>
+        <div class="url">${app.url || 'local'}</div>
+        <div class="snippet">
+          Results for "<strong>${query}</strong>" in ${app.label}
+          <span style="display:block;margin-top:6px;color:#666;font-size:.8rem;">
+            ${Math.floor(Math.random() * 100) + 1} results found
+          </span>
+        </div>
+        <div class="badge">${app.isDark ? '🌙 Dark Mode' : '☀️ Light Mode'}</div>
+      </div>
+    `;
+  } catch (e) {
+    resultsDiv.innerHTML = `<div class="info-message" style="color:#c0392b;">⚠️ Error: ${e.message}</div>`;
+  } finally {
+    loader.style.display = 'none';
+  }
+}
+
+// ============================================================
+// EVENT LISTENERS
+// ============================================================
+searchBtn.addEventListener('click', () => {
+  const q = queryInput.value.trim();
+  if (q) performSearch(q, currentMode);
+});
+
+queryInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const q = queryInput.value.trim();
+    if (q) performSearch(q, currentMode);
+  }
+});
+
+// ============================================================
+// INIT
+// ============================================================
+renderButtons();
+
+console.log('👁️ MY‑AI Dynamic Index loaded.');
+console.log('📌 Apps:', APP_INDEX.map(a => a.label).join(', '));
+</script>
+
+</body>
+</html>
