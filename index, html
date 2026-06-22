@@ -7,55 +7,48 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#f0f2f5;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px;color:#1a1a1a}
-    .container{max-width:960px;width:100%;background:#ffffff;border-radius:24px;padding:30px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+    body{background:#f0f2f5;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 16px 40px}
+    .container{max-width:960px;width:100%;background:#fff;border-radius:24px;padding:30px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
 
-    /* ===== BRAND ===== */
     .brand{text-align:center;margin-bottom:20px}
-    .brand .logo{font-size:3.5rem;line-height:1;display:block;margin-bottom:4px}
+    .brand .logo{font-size:3.5rem;display:block}
     .brand h1{font-size:2rem;font-weight:300;letter-spacing:2px;color:#1a1a1a}
     .brand h1 small{font-size:1rem;font-weight:400;color:#666}
     .brand .byline{font-size:0.8rem;color:#888;margin-top:4px}
     .brand .byline a{color:#1a1a1a;text-decoration:none;border-bottom:1px dotted #ccc}
     .brand .mardukh{font-size:0.65rem;color:#aaa;margin-top:2px;letter-spacing:1px}
 
-    /* ===== SEARCH BAR ===== */
-    .search-area{max-width:580px;margin:16px auto 24px;background:#fff;border-radius:60px;padding:6px 6px 6px 24px;display:flex;align-items:center;border:2px solid #e0e0e0;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,0.02)}
+    .search-area{max-width:580px;margin:16px auto 24px;background:#fff;border-radius:60px;padding:6px 6px 6px 24px;display:flex;align-items:center;border:2px solid #e0e0e0;transition:all .2s}
     .search-area:focus-within{border-color:#1a1a1a;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-    .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:12px 0;font-size:1.1rem;color:#1a1a1a;outline:none;min-width:0}
+    .search-area input[type="text"]{flex:1;background:transparent;border:none;padding:12px 0;font-size:1.1rem;color:#1a1a1a;outline:none}
     .search-area input::placeholder{color:#999}
-    .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:10px 28px;font-weight:600;font-size:.95rem;color:#fff;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .search-area button{background:#1a1a1a;border:none;border-radius:40px;padding:10px 28px;font-weight:600;font-size:.95rem;color:#fff;cursor:pointer;transition:all .2s}
     .search-area button:hover{background:#333;transform:scale(1.02)}
 
-    /* ===== APP GRID ===== */
     .app-section{margin:20px 0 12px}
     .app-section .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
     .app-section .section-header h2{font-size:1rem;font-weight:400;color:#666;letter-spacing:1px}
     .app-section .section-header .add-btn{background:#f0f0f0;border:1px solid #ddd;border-radius:40px;padding:6px 16px;font-size:.75rem;color:#333;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
     .app-section .section-header .add-btn:hover{background:#e0e0e0;border-color:#aaa}
-    .app-section .section-header .add-btn i{font-size:.8rem}
 
     .app-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
     .app-item{background:#f7f8fa;border:1px solid #e8e8e8;border-radius:16px;padding:14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px;min-height:90px;cursor:pointer;transition:all .2s;text-decoration:none;color:#1a1a1a;position:relative}
     .app-item:hover{background:#f0f0f0;border-color:#ccc;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
     .app-item .app-icon{font-size:2rem;margin-bottom:6px;display:block}
     .app-item .app-label{font-size:.7rem;font-weight:500;text-align:center;color:#444;max-width:80px;word-break:break-word}
-    .app-item .app-delete{position:absolute;top:-6px;right:-6px;background:#ff4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.6rem;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+    .app-item .app-delete{position:absolute;top:-6px;right:-6px;background:#ff4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.6rem;cursor:pointer;display:none;align-items:center;justify-content:center}
     .app-item:hover .app-delete{display:flex}
-    .app-item .app-badge{position:absolute;top:-6px;right:-6px;background:#1a1a1a;color:#fff;border-radius:12px;padding:1px 8px;font-size:.5rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+    .app-item .app-badge{position:absolute;top:-6px;right:-6px;background:#1a1a1a;color:#fff;border-radius:12px;padding:1px 8px;font-size:.5rem;font-weight:600;text-transform:uppercase}
     .app-item.add-new{background:transparent;border:2px dashed #ccc;min-height:80px;min-width:80px;justify-content:center;color:#999}
     .app-item.add-new:hover{background:#f7f8fa;border-color:#aaa;color:#666}
 
-    /* ===== VISITOR COUNTER ===== */
     .visitor-counter{background:#f7f8fa;border-radius:16px;padding:12px 20px;margin:20px 0 12px;border:1px solid #eee;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
     .visitor-counter .stat{display:flex;align-items:center;gap:6px;color:#666;font-size:.8rem}
     .visitor-counter .stat strong{color:#1a1a1a;font-size:1rem}
     .visitor-counter .online-dot{display:inline-block;width:8px;height:8px;background:#27ae60;border-radius:50%;animation:pulse 1.5s infinite}
     @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
-    .visitor-counter .refresh-btn{background:transparent;border:1px solid #ddd;color:#888;padding:4px 14px;border-radius:20px;font-size:.65rem;cursor:pointer;transition:.2s}
-    .visitor-counter .refresh-btn:hover{background:#eee;color:#333}
+    .visitor-counter .refresh-btn{background:transparent;border:1px solid #ddd;color:#888;padding:4px 14px;border-radius:20px;font-size:.65rem;cursor:pointer}
 
-    /* ===== RESULTS ===== */
     #results{margin-top:12px}
     .result-card{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #eee}
     .result-card h3{font-size:1rem;font-weight:600;color:#1a1a1a}
@@ -67,9 +60,8 @@
     .loader .spinner{display:inline-block;width:24px;height:24px;border:3px solid #e0e0e0;border-top:3px solid #1a1a1a;border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* ===== VISITOR LOG ===== */
     .visitor-log{background:#f7f8fa;border-radius:12px;padding:14px 18px;margin-top:12px;border:1px solid #eee;max-height:180px;overflow-y:auto}
-    .visitor-log h3{font-size:.8rem;font-weight:400;color:#888;margin-bottom:8px;letter-spacing:1px}
+    .visitor-log h3{font-size:.8rem;font-weight:400;color:#888;margin-bottom:8px}
     .visitor-log table{width:100%;font-size:.7rem;border-collapse:collapse}
     .visitor-log th{text-align:left;color:#999;font-weight:500;padding-bottom:4px;border-bottom:1px solid #eee}
     .visitor-log td{padding:3px 0;color:#555;border-bottom:1px solid #f0f0f0}
@@ -79,13 +71,11 @@
     .visitor-log::-webkit-scrollbar{width:3px}
     .visitor-log::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
 
-    /* ===== FOOTER ===== */
     .footer{margin-top:24px;text-align:center;font-size:.7rem;color:#aaa;border-top:1px solid #eee;padding-top:16px}
     .footer a{color:#888;text-decoration:none}
     .footer a:hover{color:#1a1a1a}
     .footer .open-source{font-size:.6rem;color:#bbb;margin-top:2px}
 
-    /* ===== ADMIN TOGGLE ===== */
     .admin-toggle{position:fixed;bottom:16px;right:16px;background:#fff;border:1px solid #ddd;border-radius:40px;padding:6px 14px;color:#888;font-size:.65rem;cursor:pointer;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
     .admin-toggle:hover{background:#f0f0f0;color:#333}
     .admin-panel{display:none;background:#f7f8fa;border-radius:16px;padding:16px 20px;margin-top:16px;border:1px solid #eee}
@@ -103,7 +93,6 @@
 <body>
 <div class="container">
 
-  <!-- ===== BRAND ===== -->
   <div class="brand">
     <div class="logo">🔍</div>
     <h1>Search---know- <small>™</small></h1>
@@ -111,13 +100,11 @@
     <div class="mardukh">All rights reserved • Open source</div>
   </div>
 
-  <!-- ===== SEARCH BAR ===== -->
   <div class="search-area">
     <input type="text" id="queryInput" placeholder="Search anything..." autofocus>
     <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
   </div>
 
-  <!-- ===== APP GRID ===== -->
   <div class="app-section">
     <div class="section-header">
       <h2><i class="fas fa-th"></i> My Apps</h2>
@@ -126,7 +113,6 @@
     <div class="app-grid" id="appGrid"></div>
   </div>
 
-  <!-- ===== VISITOR COUNTER ===== -->
   <div class="visitor-counter" id="visitorCounter">
     <div class="stat">👁️ <strong id="totalVisitors">...</strong> total</div>
     <div class="stat"><span class="online-dot"></span> <strong id="onlineNow">...</strong> online</div>
@@ -134,11 +120,9 @@
     <button class="refresh-btn" onclick="refreshStats()">↻</button>
   </div>
 
-  <!-- ===== RESULTS ===== -->
   <div id="loader" class="loader"><div class="spinner"></div><p style="margin-top:6px;font-size:.8rem;">Searching...</p></div>
   <div id="results"><div class="info-message">🔍 Type something and press Search</div></div>
 
-  <!-- ===== VISITOR LOG ===== -->
   <div class="visitor-log" id="visitorLog">
     <h3>🕵️ Recent Visitors</h3>
     <table>
@@ -147,7 +131,6 @@
     </table>
   </div>
 
-  <!-- ===== ADMIN PANEL ===== -->
   <div id="adminPanel" class="admin-panel">
     <h3>🛡️ Admin - Block List</h3>
     <label>Blocked Countries (comma-separated)</label>
@@ -159,7 +142,6 @@
     <div class="admin-status" id="adminStatus"></div>
   </div>
 
-  <!-- ===== FOOTER ===== -->
   <div class="footer">
     <span>© 2026 Search---know-™ • Mardukh system ®</span>
     <br>
@@ -171,54 +153,40 @@
 
 <script>
 // ============================================================
-// 1. APP CONFIGURATION - Add your apps here!
+// DEFAULT APPS
 // ============================================================
 const DEFAULT_APPS = [
-  { id: 'web', label: 'Web', icon: 'fa-globe', type: 'search', url: null },
-  { id: 'images', label: 'Images', icon: 'fa-image', type: 'search', url: null },
-  { id: 'movies', label: 'Movies', icon: 'fa-film', type: 'search', url: null },
-  { id: 'finance', label: 'Finance', icon: 'fa-chart-pie', type: 'search', url: null },
-  { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor', type: 'search', url: null },
-  { id: 'countit', label: 'Count It', icon: 'fa-calculator', type: 'search', url: null },
-  { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', type: 'app', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
-  { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', type: 'app', url: 'https://khan-amit.github.io/What-Is--seliim/' },
-  { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', type: 'app', url: 'https://khan-amit.github.io/Kongming-V1' },
-  { id: 'bazar', label: 'Bazar', icon: 'fa-store', type: 'search', url: null },
-  { id: 'wisdom', label: 'Wisdom', icon: 'fa-brain', type: 'search', url: null },
-  { id: 'csfs', label: 'CSFS', icon: 'fa-shield-halved', type: 'search', url: null },
-  { id: 'enigma', label: 'Enigma', icon: 'fa-lock', type: 'search', url: null }
+  { id: 'web', label: 'Web', icon: 'fa-globe' },
+  { id: 'images', label: 'Images', icon: 'fa-image' },
+  { id: 'movies', label: 'Movies', icon: 'fa-film' },
+  { id: 'finance', label: 'Finance', icon: 'fa-chart-pie' },
+  { id: 'cosmic', label: 'Cosmic', icon: 'fa-meteor' },
+  { id: 'enkomos', label: 'ENKOMOS', icon: 'fa-satellite', url: 'https://khan-amit.github.io/ENKOMOS-_WEB' },
+  { id: 'meetingluck', label: 'Meeting Luck', icon: 'fa-crown', url: 'https://khan-amit.github.io/What-Is--seliim/' },
+  { id: 'kongming', label: 'Kongming-V1', icon: 'fa-chess-king', url: 'https://khan-amit.github.io/Kongming-V1' }
 ];
 
-const APPS_STORAGE_KEY = 'searchknow_apps';
+const APPS_KEY = 'searchknow_apps';
 
 function loadApps() {
   try {
-    const stored = localStorage.getItem(APPS_STORAGE_KEY);
+    const stored = localStorage.getItem(APPS_KEY);
     if (stored) {
       const parsed = JSON.parse(stored);
       if (Array.isArray(parsed) && parsed.length > 0) return parsed;
     }
   } catch (e) {}
-  // Merge defaults with stored to keep new apps
-  const saved = JSON.parse(localStorage.getItem(APPS_STORAGE_KEY) || '[]');
-  const merged = [...DEFAULT_APPS];
-  saved.forEach(app => {
-    if (!merged.find(a => a.id === app.id)) {
-      merged.push(app);
-    }
-  });
-  return merged;
+  return JSON.parse(JSON.stringify(DEFAULT_APPS));
 }
 
 function saveApps(apps) {
-  localStorage.setItem(APPS_STORAGE_KEY, JSON.stringify(apps));
+  localStorage.setItem(APPS_KEY, JSON.stringify(apps));
 }
 
 let appList = loadApps();
-let currentAppId = appList[0]?.id || 'web';
 
 // ============================================================
-// 2. RENDER APP GRID
+// RENDER APPS
 // ============================================================
 const appGrid = document.getElementById('appGrid');
 
@@ -227,103 +195,79 @@ function renderApps() {
   appList.forEach(app => {
     const div = document.createElement('div');
     div.className = 'app-item';
-    div.title = app.label + (app.type === 'app' ? ' (opens in new tab)' : '');
     
-    // Delete button
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'app-delete';
     deleteBtn.innerHTML = '×';
-    deleteBtn.title = 'Remove this app';
+    deleteBtn.title = 'Remove';
     deleteBtn.onclick = (e) => {
       e.stopPropagation();
-      removeApp(app.id);
+      if (confirm('Remove "' + app.label + '"?')) {
+        appList = appList.filter(a => a.id !== app.id);
+        saveApps(appList);
+        renderApps();
+      }
     };
     div.appendChild(deleteBtn);
     
-    // Icon
     const icon = document.createElement('span');
     icon.className = 'app-icon';
     icon.innerHTML = `<i class="fas ${app.icon}"></i>`;
     div.appendChild(icon);
     
-    // Label
     const label = document.createElement('span');
     label.className = 'app-label';
     label.textContent = app.label;
     div.appendChild(label);
     
-    // App badge for standalone
-    if (app.type === 'app') {
+    if (app.url) {
       const badge = document.createElement('span');
       badge.className = 'app-badge';
       badge.textContent = 'APP';
       div.appendChild(badge);
     }
     
-    div.onclick = () => openApp(app);
+    div.onclick = () => {
+      if (app.url) {
+        window.open(app.url, '_blank');
+      } else {
+        const q = document.getElementById('queryInput').value.trim();
+        if (q) {
+          document.getElementById('results').innerHTML = `<div class="result-card"><h3>🔍 ${app.label} Results</h3><div class="snippet">Showing results for "${q}" in ${app.label}</div><div class="badge">${app.label}</div></div>`;
+        } else {
+          document.getElementById('results').innerHTML = `<div class="info-message">🔍 Type something to search ${app.label}</div>`;
+        }
+      }
+    };
     appGrid.appendChild(div);
   });
   
-  // Add "Add App" button
   const addDiv = document.createElement('div');
   addDiv.className = 'app-item add-new';
   addDiv.innerHTML = `<span style="font-size:2rem;">+</span><span style="font-size:.6rem;color:#999;margin-top:4px;">Add App</span>`;
-  addDiv.onclick = () => showAddAppModal();
+  addDiv.onclick = () => {
+    const label = prompt('Enter app name:');
+    if (!label || label.trim() === '') return;
+    const url = prompt('Enter app URL (e.g., https://weather.com):');
+    if (!url || url.trim() === '') return;
+    const icon = prompt('Enter Font Awesome icon (e.g., fa-cloud-sun):', 'fa-link');
+    
+    const newApp = {
+      id: 'app_' + Date.now(),
+      label: label.trim(),
+      icon: icon || 'fa-link',
+      url: url.trim()
+    };
+    appList.push(newApp);
+    saveApps(appList);
+    renderApps();
+    alert('✅ "' + label + '" added!');
+  };
   appGrid.appendChild(addDiv);
 }
 
 // ============================================================
-// 3. OPEN APP
-// ============================================================
-function openApp(app) {
-  if (app.type === 'app' && app.url) {
-    window.open(app.url, '_blank');
-  } else {
-    currentAppId = app.id;
-    const q = document.getElementById('queryInput').value.trim();
-    if (q) performSearch(q, app.id);
-    else {
-      document.getElementById('results').innerHTML = `<div class="info-message">🔍 Type something and press Search for "${app.label}"</div>`;
-    }
-  }
-}
-
-// ============================================================
-// 4. ADD / REMOVE APP
-// ============================================================
-function removeApp(appId) {
-  if (confirm('Remove "' + appList.find(a => a.id === appId)?.label + '" from your apps?')) {
-    appList = appList.filter(a => a.id !== appId);
-    saveApps(appList);
-    renderApps();
-  }
-}
-
-function showAddAppModal() {
-  const label = prompt('Enter app name (e.g., Yahoo Weather):');
-  if (!label || label.trim() === '') return;
-  
-  const url = prompt('Enter app URL (e.g., https://weather.com):');
-  if (!url || url.trim() === '') return;
-  
-  const icon = prompt('Enter Font Awesome icon (e.g., fa-cloud-sun):', 'fa-cloud-sun');
-  
-  const newApp = {
-    id: 'app_' + Date.now(),
-    label: label.trim(),
-    icon: icon || 'fa-link',
-    type: 'app',
-    url: url.trim()
-  };
-  
-  appList.push(newApp);
-  saveApps(appList);
-  renderApps();
-  alert('✅ App "' + label + '" added!');
-}
-
-// ============================================================
-// 5. VISITOR TRACKING
+// VISITOR TRACKING
 // ============================================================
 const LOG_KEY = 'searchknow_visit_log';
 const TOTAL_KEY = 'searchknow_total_visits';
@@ -357,7 +301,7 @@ window.saveBlockList = function() {
   const ips = document.getElementById('blockedIPsInput').value.split(',').map(s => s.trim()).filter(s => s);
   localStorage.setItem(BLOCKED_COUNTRIES_KEY, countries.join(','));
   localStorage.setItem(BLOCKED_IPS_KEY, ips.join(','));
-  document.getElementById('adminStatus').textContent = '✅ Block list saved!';
+  document.getElementById('adminStatus').textContent = '✅ Saved!';
   setTimeout(() => document.getElementById('adminStatus').textContent = '', 3000);
 };
 
@@ -366,7 +310,7 @@ window.clearBlockList = function() {
   localStorage.removeItem(BLOCKED_IPS_KEY);
   document.getElementById('blockedCountriesInput').value = '';
   document.getElementById('blockedIPsInput').value = '';
-  document.getElementById('adminStatus').textContent = '🗑️ Block list cleared.';
+  document.getElementById('adminStatus').textContent = '🗑️ Cleared!';
   setTimeout(() => document.getElementById('adminStatus').textContent = '', 3000);
 };
 
@@ -375,15 +319,15 @@ async function fetchVisitorData() {
     const res = await fetch('https://ipapi.co/json/');
     if (!res.ok) throw new Error('IP API failed');
     const data = await res.json();
-    return { ip: data.ip || 'unknown', country: data.country_code || 'XX', countryName: data.country_name || 'Unknown', city: data.city || 'Unknown' };
+    return { ip: data.ip || 'unknown', country: data.country_code || 'XX', countryName: data.country_name || 'Unknown' };
   } catch (e) {
-    return { ip: 'unknown', country: 'XX', countryName: 'Unknown', city: 'Unknown' };
+    return { ip: 'unknown', country: 'XX', countryName: 'Unknown' };
   }
 }
 
 async function logVisit() {
   const info = await fetchVisitorData();
-  const ip = info.ip, country = info.country, countryName = info.countryName, city = info.city;
+  const ip = info.ip, country = info.country, countryName = info.countryName;
   const blockedCountries = getBlockedCountries(), blockedIPs = getBlockedIPs();
   if (blockedCountries.includes(country) || blockedIPs.includes(ip)) return;
 
@@ -398,7 +342,7 @@ async function logVisit() {
   const today = new Date().toDateString();
   const existing = log.find(entry => entry.visitorId === visitorId && new Date(entry.timestamp).toDateString() === today);
   if (!existing) {
-    log.unshift({ visitorId, timestamp: new Date().toISOString(), ip, country, countryName, city });
+    log.unshift({ visitorId, timestamp: new Date().toISOString(), ip, country, countryName });
     if (log.length > 100) log = log.slice(0, 100);
     localStorage.setItem(LOG_KEY, JSON.stringify(log));
     total++;
@@ -419,8 +363,7 @@ async function logVisit() {
 }
 
 function updateUI() {
-  const total = parseInt(localStorage.getItem(TOTAL_KEY) || '0');
-  document.getElementById('totalVisitors').textContent = total.toLocaleString();
+  document.getElementById('totalVisitors').textContent = (parseInt(localStorage.getItem(TOTAL_KEY) || '0')).toLocaleString();
   const online = JSON.parse(localStorage.getItem(ONLINE_KEY) || '{}');
   document.getElementById('onlineNow').textContent = Object.keys(online).length;
   const countries = JSON.parse(localStorage.getItem(COUNTRIES_KEY) || '{}');
@@ -430,6 +373,7 @@ function updateUI() {
     return `${flag} ${code} (${count})`;
   }).join(' ');
   document.getElementById('topCountries').textContent = top || 'None yet';
+  
   const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
   const tbody = document.getElementById('logBody');
   if (log.length === 0) {
@@ -437,8 +381,7 @@ function updateUI() {
   } else {
     tbody.innerHTML = log.slice(0, 20).map((entry, i) => {
       const flag = entry.country === 'XX' ? '🌍' : entry.country.split('').map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
-      const time = new Date(entry.timestamp).toLocaleString();
-      return `<tr><td>${i+1}</td><td class="timestamp">${time}</td><td><span class="flag">${flag}</span> ${entry.countryName}</td><td class="ip">${entry.ip}</td></tr>`;
+      return `<tr><td>${i+1}</td><td class="timestamp">${new Date(entry.timestamp).toLocaleString()}</td><td><span class="flag">${flag}</span> ${entry.countryName}</td><td class="ip">${entry.ip}</td></tr>`;
     }).join('');
   }
 }
@@ -448,65 +391,37 @@ logVisit();
 setInterval(updateUI, 30000);
 
 // ============================================================
-// 6. SEARCH ENGINE
+// SEARCH
 // ============================================================
-const queryInput = document.getElementById('queryInput');
-const searchBtn = document.getElementById('searchBtn');
-const resultsDiv = document.getElementById('results');
-const loader = document.getElementById('loader');
-
-async function performSearch(query, appId) {
-  if (!query) {
-    resultsDiv.innerHTML = '<div class="info-message">🔍 Type something and press Search</div>';
-    return;
-  }
-
-  loader.style.display = 'block';
-  resultsDiv.innerHTML = '';
-
-  try {
-    await new Promise(resolve => setTimeout(resolve, 600));
-    const app = appList.find(a => a.id === appId) || appList[0];
-    const results = Math.floor(Math.random() * 100) + 1;
-    
-    let html = '';
-    for (let i = 1; i <= 5; i++) {
-      html += `
-        <div class="result-card">
-          <h3><i class="fas ${app.icon}" style="margin-right:8px;"></i> ${query} - Result ${i}</h3>
-          <div class="url">https://searchknow.app/${appId}/${i}</div>
-          <div class="snippet">Found in ${app.label}: "${query}" - This is a demo result showing how search works in Search---know-™</div>
-          <div class="badge">${app.label}</div>
-        </div>
-      `;
-    }
-    resultsDiv.innerHTML = html;
-  } catch (e) {
-    resultsDiv.innerHTML = `<div class="info-message" style="color:#c0392b;">⚠️ Error: ${e.message}</div>`;
-  } finally {
-    loader.style.display = 'none';
-  }
-}
-
-searchBtn.addEventListener('click', () => {
-  const q = queryInput.value.trim();
-  if (q) performSearch(q, currentAppId);
-});
-
-queryInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const q = queryInput.value.trim();
-    if (q) performSearch(q, currentAppId);
+document.getElementById('searchBtn').addEventListener('click', () => {
+  const q = document.getElementById('queryInput').value.trim();
+  if (q) {
+    document.getElementById('results').innerHTML = `
+      <div class="result-card"><h3>🔍 Search Results</h3><div class="snippet">Showing results for "<strong>${q}</strong>"</div><div class="badge">Search---know-</div></div>
+      <div class="result-card"><div class="snippet">• Result 1: ${q} - related information</div></div>
+      <div class="result-card"><div class="snippet">• Result 2: ${q} - more details</div></div>
+      <div class="result-card"><div class="snippet">• Result 3: ${q} - additional resources</div></div>
+    `;
   }
 });
 
+document.getElementById('queryInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('searchBtn').click();
+});
+
 // ============================================================
-// 7. INIT
+// ADD APP BUTTON
+// ============================================================
+document.getElementById('addAppBtn').addEventListener('click', () => {
+  document.querySelector('.app-item.add-new').click();
+});
+
+// ============================================================
+// INIT
 // ============================================================
 renderApps();
 console.log('🔍 Search---know-™ loaded.');
 console.log('📌 Apps:', appList.map(a => a.label).join(', '));
-console.log('💡 Click "Add App" to add any third-party app (Yahoo Weather, etc.)');
 </script>
 </body>
 </html>
